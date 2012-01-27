@@ -32,6 +32,19 @@ task :install do
     end
     `ln -s "$PWD/#{linkable}" "#{target}"`
   end
+
+  # rename vimrc and gvimrc to prepare for Janus
+  `mv .vimrc .vimrc.after`
+  `mv .gvimrc .gvimrc.after`
+
+  # install Janus
+  `curl -Lo- http://bit.ly/janus-bootstrap | bash`
+
+  # TODO: symlink vim bundles to ~/.janus
+  #
+
+  # TODO: symlink zsh custom directory
+  #
 end
 
 task :uninstall do
