@@ -1,0 +1,26 @@
+mkrisher's dot-files
+====================
+
+My dot-files related to zsh, vim, etc....
+
+I use Janus for Vim. So a few symlinks need to be put in place.
+
+For the most part run the Rakefile
+
+`rake`
+
+Most of which was copied from @holman.
+
+symlink the zsh custom directory
+
+symlink a ~/.janus directory to vim/bundle
+
+a couple of files are referenced in zshrc
+one is a logins file. I alias a lot of ssh logins, makes
+it easier for me to remember, especially using ssh keys and 
+unusual ports. For example, a staging server gets aliased like:
+alias login_stage='ssh rails@staging.server.com'
+
+a second source file is for projects. I alias a lot of file paths, 
+it makes it easier for me to jump to the root of projects in the 
+the terminal and start some of my other aliases like watchr or showlog.

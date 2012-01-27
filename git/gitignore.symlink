@@ -1,0 +1,4 @@
+*.DS_Store
+vim/tmp
+*.swp
+.rake_tasks~

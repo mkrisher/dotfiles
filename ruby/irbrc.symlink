@@ -1,0 +1,68 @@
+require 'rubygems'
+require 'pp'
+require 'irb/completion'
+require 'interactive_editor'
+
+begin
+  require 'wirble'
+  Wirble.init
+  Wirble.colorize
+rescue LoadError => err
+  warn "Couldn't load Wirble: #{err}"
+end
+
+IRB.conf[:AUTO_INDENT]=true
+
+# irb session history
+HISTFILE = "~/.irb_history" unless Module.constants.member? "HISTFILE"
+MAXHISTSIZE = 100 unless Module.constants.member? "MAXHISTSIZE"
+begin
+  if defined? Readline::HISTORY
+    histfile = File::expand_path( HISTFILE )
+    if File::exists?( histfile )
+      lines = IO::readlines( histfile ).collect {|line| line.chomp}
+      puts "Read %d saved history commands from %s." % [ lines.nitems, histfile ] if $DEBUG || $VERBOSE
+      Readline::HISTORY.push( *lines )
+    else
+      puts "History file '%s' was empty or non-existant." % histfile if $DEBUG || $VERBOSE
+    end
+
+    Kernel::at_exit {
+      lines = Readline::HISTORY.to_a.reverse.uniq.reverse
+      lines = lines[ -MAXHISTSIZE, MAXHISTSIZE ] if lines.nitems > MAXHISTSIZE
+      $stderr.puts "Saving %d history lines to %s." % [ lines.length, histfile ] if $VERBOSE || $DEBUG
+      File::open( histfile, File::WRONLY|File::CREAT|File::TRUNC ) { |ofh|
+        lines.each { |line| ofh.puts line }
+      }
+    }
+  end
+end
+
+# Prompt to include project name and env (Rails)
+if rails_env = ENV['RAILS_ENV'] || (defined?(Rails) && rails_env = Rails.env)
+  rails_root = File.basename(Dir.pwd)
+  prompt = "#{rails_root}[#{rails_env}]"
+  IRB.conf[:PROMPT] ||= {}
+  IRB.conf[:PROMPT][:RAILS] = {
+    :PROMPT_I => "#{prompt}> ",
+    :PROMPT_S => "#{prompt}* ",
+    :PROMPT_C => "#{prompt}? ",
+    :RETURN => "=> %s\n"
+  }
+  IRB.conf[:PROMPT_MODE] = :RAILS
+
+  # Called after the irb session is initialized and Rails has
+  # been loaded (props: Mike Clark).
+  IRB.conf[:IRB_RC] = Proc.new do
+    # Shows what's logged in realtime (beats tailing the log in another terminal)
+    # ActiveRecord::Base.logger = Logger.new(STDOUT)
+  end
+end
+
+# hirb
+begin
+  require 'hirb'
+  Hirb::View.enable
+rescue LoadError => err
+  warn "Couldn't load Hirb: #{err}"
+end

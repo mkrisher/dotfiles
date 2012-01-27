@@ -1,0 +1,21 @@
+set guifont=Monaco:h12    " Font family and font size.
+set antialias             " MacVim: smooth fonts.
+set encoding=utf-8        " Use UTF-8 everywhere.
+set guioptions-=T         " Hide toolbar.
+
+set guioptions-=r         " Don't show right scrollbar
+set guioptions-=L         " Don't show left scrollbar
+
+set mousehide             " Hide mouse after chars typed
+set mouse=a               " Mouse in all modes
+
+set number                " Turn on line numbers
+
+set showtabline=2         " Turns on the tab bar always
+
+set guioptions-=T         " GUI Option to remove the Toolbar (T)
+
+color github
+
+" set file type so it can be run with rubyrunner plugin
+command! FR set filetype=ruby
