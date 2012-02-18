@@ -3,17 +3,7 @@ mkrisher's dot-files
 
 My dot-files related to zsh, vim, etc....
 
-I use Janus for Vim. So a few symlinks need to be put in place.
-
-For the most part run the Rakefile
-
-`rake`
-
-Most of which was copied from @holman.
-
-symlink the zsh custom directory
-
-symlink a ~/.janus directory to vim/bundle
+I used to use Janus and Macvim. I'm going as basic Vim as possible. Keeping it simple.
 
 a couple of files are referenced in zshrc
 one is a logins file. I alias a lot of ssh logins, makes
