@@ -5,6 +5,11 @@ call pathogen#infect()
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
 
+let g:solarized_termcolors=256
+set t_Co=16
+set background=dark
+colorscheme solarized
+
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
 
@@ -35,29 +40,12 @@ set visualbell                    " No beeping.
 set nobackup                      " Don't make a backup before overwriting a file.
 set nowritebackup                 " And again.
 
-" UNCOMMENT TO USE
 set tabstop=2                    " Global tab width.
 set shiftwidth=2
 set softtabstop=2
 set expandtab
 
 set laststatus=2                  " Show the status line all the time
-" Useful status information at bottom of screen
-"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
-
-" Tab mappings.
-map <leader>to :tabnew<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-" map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
-
-" map z !} sed -f ~/script/bar.sed
-map tablize !} sed -e 's/	/ \| /g' \| sed -e 's/^/\| /g' \| sed -e 's/$/ \|/g'
 
 " Sane searching
 nnoremap / /\v
@@ -108,17 +96,6 @@ vmap <D-]> >gv
 nmap <silent> <leader>s :set spell!<CR>
 set spelllang=en_us
 
-" Automatic fold settings for specific files. Uncomment to use.
-" autocmd FileType ruby setlocal foldmethod=syntax
-" set foldmethod=indent
-" set foldlevel=100
-
-" For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
-" autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-
-" Add recently accessed projects menu (project plugin)
-set viminfo^=!
-
 " Show hide NERDTree
 nmap <silent> <leader> :NERDTreeToggle<CR>
 
@@ -140,10 +117,6 @@ endfun
 command -nargs=0 Stripwhitespace :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.feature,*.rb,*.php,*.rake,*.pl,*.pm,*.css,*.scss,*.js,*.coffee,*.erb Stripwhitespace
 
-"Directories for swp files
-"set backupdir=~/.vim/backup
-"set directory=~/.vim/backup
-
 "folding settings
 set foldmethod=indent   "fold based on indent
 set foldnestmax=10      "deepest fold is 10 levels
@@ -151,25 +124,6 @@ set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 
 set timeoutlen=250
-
-" Tabularize for aligning things
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
-
-function! s:align()
-  let p = '^\s*|\s.*\s|\s*$'
-  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-    Tabularize/|/l1
-    normal! 0
-    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-  endif
-endfunction
-
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
 
 " gundo:  http://sjl.bitbucket.org/gundo.vim/
 " View the change history as a tree with preview
