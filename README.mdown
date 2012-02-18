@@ -5,6 +5,11 @@ My dot-files related to zsh, vim, etc....
 
 I used to use Janus and Macvim. I'm going as basic Vim as possible. Keeping it simple.
 
+I do install Macvim via homebrew so I can use the Cocoa version of Vim that is 
+included versus the default vim OS X version:
+
+`brew install macvim --override-system-vim --with-ruby-command=/usr/bin/ruby`
+
 a couple of files are referenced in zshrc
 one is a logins file. I alias a lot of ssh logins, makes
 it easier for me to remember, especially using ssh keys and 
