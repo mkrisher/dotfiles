@@ -17,16 +17,7 @@ for config_file ($DOTFILES/**/*.zsh) source $config_file
 setopt auto_cd
 cdpath=($HOME/.dotfiles $HOME/Documents/projects/repos)
 
-# if the mvim command exists
-if [[ -x `which mvim` ]]; then
-  # use macvim as default editor
-  export EDITOR="mvim -f"
-  # open file in new tab
-  alias rmvim="mvim --remote-tab-silent"
-else
-  # use vim otherwise
-  export EDITOR="vim"
-fi
+export EDITOR="vim"
 
 # Experimenting with REE settings
 export RUBY_HEAP_FREE_MIN=1000000
@@ -37,3 +28,6 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 # include secure files
 source /Users/mkrisher/Dropbox/dot-files/.logins
 source /Users/mkrisher/Dropbox/dot-files/.projects
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

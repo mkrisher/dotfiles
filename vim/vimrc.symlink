@@ -30,7 +30,7 @@ set hlsearch                      " Highlight matches.
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
 
-set wrap                          " Turn on line wrapping.
+set nowrap                          " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 
 set title                         " Set the terminal's title
@@ -39,6 +39,7 @@ set visualbell                    " No beeping.
 
 set nobackup                      " Don't make a backup before overwriting a file.
 set nowritebackup                 " And again.
+set noswapfile
 
 set tabstop=2                    " Global tab width.
 set shiftwidth=2
@@ -46,6 +47,10 @@ set softtabstop=2
 set expandtab
 
 set laststatus=2                  " Show the status line all the time
+
+"Directories for swp files
+set backupdir=~/tmp/vim//
+set directory=~/tmp/vim//
 
 " Sane searching
 nnoremap / /\v
@@ -55,6 +60,21 @@ set showmatch
 nnoremap <tab> %
 vnoremap <tab> %
 
+" reselect after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+" clear search highlights:
+noremap <silent><Leader>/ :nohls<CR>
+
+" moving lines (alt+j)
+nnoremap <leader>j :m+<CR>==
+nnoremap <leader>k :m-2<CR>==
+inoremap <leader>j <Esc>:m+<CR>==gi
+inoremap <leader>k <Esc>:m-2<CR>==gi
+vnoremap <leader>j :m'>+<CR>gv=gv
+vnoremap <leader>k :m-2<CR>gv=gv
+
 " Clear search results
 nnoremap <leader><space> :noh<cr>
 
@@ -63,7 +83,7 @@ nnoremap <leader><space> :noh<cr>
 set list listchars=tab:▸\ ,trail:·
 
 " Ack
-nnoremap <leader>a :Ack 
+nnoremap <leader>a :Ack --ignore-dir=log 
 
 " Navigating splits
 nnoremap <leader>w <C-w>v<C-w>l
@@ -93,7 +113,7 @@ vmap <D-[> <gv
 vmap <D-]> >gv
 
 " Configure spell checking
-nmap <silent> <leader>s :set spell!<CR>
+"nmap <silent> <leader>s :set spell!<CR>
 set spelllang=en_us
 
 " Show hide NERDTree
@@ -129,3 +149,9 @@ set timeoutlen=250
 " View the change history as a tree with preview
 nnoremap <F5> :GundoToggle<CR>
 let g:gundo_preview_bottom = 1 " tree on side, preview on bottom
+
+" indicate insert mode
+:autocmd InsertEnter,InsertLeave * set cul!
+
+" map for RSpec
+nmap <silent> <leader>r :!rspec %<CR>
