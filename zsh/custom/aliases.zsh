@@ -34,3 +34,6 @@ alias testlog='tail -f log/test.log'
 
 # run tmux in 256 mode
 alias tmux="TERM=screen-256color-bce tmux"
+
+# project executables
+alias conduit="~/.dotfiles/tmux/conduit"
