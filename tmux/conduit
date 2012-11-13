@@ -1,0 +1,17 @@
+# editor window
+tmux -2 new-session -s dev -n editor -d
+tmux send-keys -t dev 'cd /Users/mkrisher/Documents/projects/repos/conduit' C-m
+tmux send-keys -t dev 'vim' C-m
+tmux split-window -v -p 5 -t dev
+tmux send-keys -t dev:1.2 'cd /Users/mkrisher/Documents/projects/repos/conduit' C-m
+
+# test suite window
+tmux new-window -n tests -t dev
+tmux send-keys -t dev:2 'cd /Users/mkrisher/Documents/projects/repos/conduit' C-m
+tmux send-keys -t dev:2 'vup' C-m
+tmux send-keys -t dev:2 'vssh' C-m
+tmux send-keys -t dev:2 'cd conduit' C-m
+
+# open and attach
+tmux select-window -t dev:1
+tmux -2 attach -t dev
