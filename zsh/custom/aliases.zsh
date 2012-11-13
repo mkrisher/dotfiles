@@ -24,7 +24,13 @@ alias httpdump_wl='sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E "Host\: .*|G
 
 # vagrant aliases
 alias vagrant='NOEXEC=0 vagrant'
+alias vup='vagrant up'
+alias vhalt='vagrant halt'
+alias vssh='vagrant ssh && cd conduit'
 
 #tailing log
 alias devlog='tail -f log/development.log'
 alias testlog='tail -f log/test.log'
+
+# run tmux in 256 mode
+alias tmux="TERM=screen-256color-bce tmux"
