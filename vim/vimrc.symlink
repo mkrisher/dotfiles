@@ -75,6 +75,10 @@ inoremap <leader>k <Esc>:m-2<CR>==gi
 vnoremap <leader>j :m'>+<CR>gv=gv
 vnoremap <leader>k :m-2<CR>gv=gv
 
+"splits
+nnoremap <leader>v :vsplit<cr><C-w>l
+nnoremap <leader>s :split<cr><C-w>j
+
 " Clear search results
 nnoremap <leader><space> :noh<cr>
 
