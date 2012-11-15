@@ -11,6 +11,7 @@ tmux send-keys -t dev:2 'cd /Users/mkrisher/Documents/projects/repos/conduit' C-
 tmux send-keys -t dev:2 'vup' C-m
 tmux send-keys -t dev:2 'vssh' C-m
 tmux send-keys -t dev:2 'cd conduit' C-m
+#tmux send-keys -t dev:2 'bundle exec guard' C-m
 
 # open and attach
 tmux select-window -t dev:1
