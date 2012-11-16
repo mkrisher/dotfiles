@@ -4,7 +4,7 @@ export EDITOR="vim"
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 export PATH=$HOME/.bin:$HOME/.dotfiles/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/bin:/usr/local/mysql/bin:/Applications/Postgres.app/Contents/MacOS/bin:$PATH
-export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+#export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 
 export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
 
