@@ -1,0 +1,34 @@
+# services
+alias vi='vim'
+alias vim="/usr/local/Cellar/vim/7.4.430_1/bin/vim"
+alias mysqlstart='mysql.server start'
+alias mysqlstop='mysql.server stop'
+alias mongostart='mongod run --config /usr/local/Cellar/mongodb/2.0.0-x86_64/mongod.conf &'
+alias redisstart='redis-server /usr/local/etc/redis.conf &'
+alias memcachestart='/usr/local/bin/memcached -d'
+alias pgstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias pgstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+alias elastic='elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
+alias tmux="TERM=screen-256color-bce tmux"
+
+# shell commmands
+alias dnsflush='dscacheutil -flushcache; sudo /usr/bin/killall -HUP mDNSResponder'
+alias dnsf="dscacheutil -flushcache; sudo discoveryutil mdnsflushcache"
+# watch http requests on the ethernet port on a mac
+alias httpdump_wd='sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*"'
+# watch http requests on the airport on a mac
+alias httpdump_wl='sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*"'
+
+# project utilities
+alias dev="ssh d1-dev-mkrisher"
+alias devip="ssh 10.0.255.223"
+alias prodworker="ssh d1-site-utility-worker"
+alias repos='cd ~/Documents/projects/repos && clear'
+alias resourcery="~/.dotfiles/tmux/resourcery"
+alias adv="~/.dotfiles/tmux/adventures"
+
+# shortcuts
+alias wee="weechat-curses"
+alias update_wee="cd /Users/mkrisher/.weechat/python && curl -O https://raw.githubusercontent.com/rawdigits/wee-slack/master/wee_slack.py && cd -"
+alias encrypt='encfs ~/Dropbox/Private/ ~/Private/ -o volname="Dropbox private",allow_other'
+

@@ -1,0 +1,15 @@
+# shell commands
+alias empties='find . -empty -type d' #find empty subdirectories
+alias procs='ps wu -U ' #looking for a username, finds running procs for user
+alias bof='(head -5) < ' #looking for a file, shows first five lines of file
+alias eof='(tail -5) < ' #looking for a file, shows last five lines of file
+alias downcase='for f in *; do b=$(echo "$f" | tr "[A-Z]" "[a-z]"); mv "$f" "$b"; done' # downcases all filenames in directory
+alias ip='ifconfig | grep inet'
+alias empty="cat /dev/null > "
+alias resource='source ~/.bash_profile'
+alias reload='exec $SHELL -l'
+alias devlog='tail -f log/development.log'
+alias testlog='tail -f log/test.log'
+alias rspec='bundle exec rspec'
+alias pyrepl="ptpython --vi"
+
