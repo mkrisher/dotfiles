@@ -1,0 +1,26 @@
+# create a new session named 'dev'
+# call the initial window 'editor'
+# then detach
+tmux -2 new-session -s dev -n shell -d
+
+# command line window
+tmux send-keys -t dev 'clear && cd /Users/mkrisher/Documents/projects/repos/adventurereads' C-m
+
+# vim window
+tmux new-window -n vim -t dev
+tmux send-keys -t dev:2 'clear && cd /Users/mkrisher/Documents/projects/repos/adventurereads' C-m
+tmux send-keys -t dev:2 'vim' C-m
+
+# test suite window
+tmux new-window -n rspec -t dev
+tmux send-keys -t dev:3 'clear && cd /Users/mkrisher/Documents/projects/repos/adventurereads' C-m
+tmux send-keys -t dev:3 'rspec' C-m
+
+# rails server window
+tmux new-window -n server -t dev
+tmux send-keys -t dev:4 'clear && cd /Users/mkrisher/Documents/projects/repos/adventurereads' C-m
+tmux send-keys -t dev:4 'rails s' C-m
+
+# attach
+tmux select-window -t dev:1
+tmux -2 attach -t dev

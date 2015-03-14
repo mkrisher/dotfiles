@@ -1,18 +1,25 @@
-# editor window
+# create a new session named 'dev'
+# call the initial window 'editor'
+# then detach
 tmux -2 new-session -s dev -n editor -d
-tmux send-keys -t dev 'cd /Users/mkrisher/Documents/projects/repos/conduit' C-m
+
+# editor pane
+tmux send-keys -t dev 'clear && cd /Users/mkrisher/Documents/projects/repos/conduit' C-m
 tmux send-keys -t dev 'vim' C-m
+
+# command line pane
 tmux split-window -v -p 5 -t dev
-tmux send-keys -t dev:1.2 'cd /Users/mkrisher/Documents/projects/repos/conduit' C-m
 
 # test suite window
 tmux new-window -n tests -t dev
-tmux send-keys -t dev:2 'cd /Users/mkrisher/Documents/projects/repos/conduit' C-m
+tmux send-keys -t dev:2 'clear && cd /Users/mkrisher/Documents/projects/repos/conduit' C-m
 tmux send-keys -t dev:2 'vup' C-m
 tmux send-keys -t dev:2 'vssh' C-m
 tmux send-keys -t dev:2 'cd conduit' C-m
-#tmux send-keys -t dev:2 'bundle exec guard' C-m
+tmux send-keys -t dev:2 'bundle exec rspec' C-m
 
-# open and attach
+# attach
 tmux select-window -t dev:1
+tmux select-pane 2
+tmux send-keys 'clear && cd /Users/mkrisher/Documents/projects/repos/conduit' C-m
 tmux -2 attach -t dev

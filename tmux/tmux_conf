@@ -1,0 +1,110 @@
+# remap tmux prefix to control - a
+set -g prefix C-a
+
+# unbind original prefix mapping
+unbind C-b
+
+# change the default delay
+set -s escape-time 1
+
+# set the window indexing at 1
+set -g base-index 1
+
+# reload the tmux conf file
+bind r source-file ~/.tmux.conf \; display "Reloaded"
+
+# enable passing of the prefix keys to active processes by pressing it twice
+bind C-a send-prefix
+
+# map split pane keys
+bind | split-window -h
+bind - split-window -v
+
+# map vim style movement keys
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# map vim-ish style movement keys to resize panes
+bind H resize-pane -L 3
+bind J resize-pane -D 3
+bind K resize-pane -U 3
+bind L resize-pane -R 3
+
+bind U resize-pane -U 50
+bind D resize-pane -D 50
+
+# set the default terminal
+set -g default-terminal "screen-256color"
+
+# set the status bar background color
+set -g status-bg black
+
+# set the inactive/active window colors in the status bar
+setw -g window-status-fg colour238
+setw -g window-status-bg default
+setw -g window-status-attr dim
+
+setw -g window-status-current-fg red
+setw -g window-status-current-bg default
+setw -g window-status-current-attr dim
+
+# set the pane border colors
+set -g pane-border-fg colour238
+set -g pane-border-bg black
+set -g pane-active-border-fg colour238
+set -g pane-active-border-bg default
+
+# monitor activity of windows
+setw -g monitor-activity on
+set -g visual-activity on
+
+# set buffer mode-keys to vi for movement
+setw -g mode-keys vi
+
+# use vi copy and paste movements in tmux
+unbind [
+bind Escape copy-mode
+#unbind p
+#bind p paste-buffer
+bind -t vi-copy 'v' begin-selection
+bind -t vi-copy 'y' copy-selection
+
+# use Up key to maximize a pane
+unbind Up
+bind Up resize-pane -U 50
+#bind Up new-window -d -n tmp \; swap-pane -s tmp.1 \; select-window -t tmp
+
+# use Down key to restore pane
+unbind Down
+bind Down resize-pane -D 50
+#bind Down last-window \; swap-pane -s tmp.1 \; kill-window -t tmp
+
+# set the tmux shell to zsh
+set -g default-command /bin/zsh
+set -g default-shell /bin/zsh
+
+# tmux powerline
+#set-option -g status on
+#set-option -g status-utf8 on
+#set-option -g status-interval 2
+#set-option -g status-justify "left"
+#set-option -g status-left-length 60
+#set-option -g status-right-length 90
+#set-option -g status-left "#(~/tmux/tmux-powerline/powerline.sh left)"
+#set-option -g status-right "#(~/tmux/tmux-powerline/powerline.sh right)"
+
+#set -g window-status-format "#[fg=white,bg=black] #I #W "
+#set -g window-status-current-format "#[fg=colour234,bg=colour39]⮀#[fg=colour16,bg=colour39,noreverse,bold] #I ⮁ #W #[fg=colour39,bg=colour234,nobold]⮀"
+
+# powerline
+source ~/.local/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf
+
+# add pomo display
+set-option -g status-right '#(cat ~/.pomo_stat)'
+
+#underline statusbar window list on update
+setw -g monitor-activity on
+setw -g window-status-content-attr underscore
+setw -g window-status-activity-attr underscore
