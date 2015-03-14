@@ -6,16 +6,16 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'rking/ag.vim'
-Plugin 'kein/ctrlp.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-abolish'
-Plugin 'bling/vim-airline'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'altercation/vim-colors-solarized
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'rking/ag.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'bling/vim-airline'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'altercation/vim-colors-solarized'
 
 " Vundle help
 " :PluginList       - lists configured plugins
