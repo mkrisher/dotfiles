@@ -11,6 +11,7 @@ task :install do
   # install vim plugins
   # move the solarized file
 
+  `ln -s "$PWD/bash" "$HOME/.bash"`
   `ln -s "$PWD/bash/bash_profile" "$HOME/.bash_profile"`
   `ln -s "$PWD/bash/bash_prompt" "$HOME/.bash_prompt"`
   `ln -s "$PWD/tmux" "$HOME/.tmux"`
