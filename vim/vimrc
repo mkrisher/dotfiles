@@ -1,8 +1,31 @@
-set nocompatible "required on ubuntu for pathogen
-call pathogen#infect()
+set nocompatible
+filetype off
 
-syntax enable
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'rking/ag.vim'
+Plugin 'kein/ctrlp.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-abolish'
+Plugin 'bling/vim-airline'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'altercation/vim-colors-solarized
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-surround'
+
+" Vundle help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+
+call vundle#end()
 filetype plugin indent on
+syntax enable
 
 set showcmd                       " Display incomplete commands.
 set noshowmode                    " Display the mode you're in.
@@ -112,11 +135,6 @@ nmap <leader>ta :CtrlP app<cr>
 nmap <leader>tp :CtrlP spec<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" STATUS LINE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set statusline=%<%f\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256
@@ -178,11 +196,6 @@ function! NumberToggle()
 endfunc
 
 nnoremap <Leader>ln :call NumberToggle()<cr>
-
-""""""""""""""""""""""""
-" dispatch.vim
-""""""""""""""""""""""""
-map <Leader>r :Dispatch rspec %<CR>
 
 """"""""""""""""""""""""
 " vim-airline
