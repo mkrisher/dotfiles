@@ -22,5 +22,16 @@ task :install do
   `mv "$HOME/.vim/bundle/vim-colors-solarized/colors/solarized.vim" "$HOME/.vim/colors/solarized.vim"`
 end
 
+desc "remove symlinked dotfiles"
+task :uninstall do
+  `rm "$HOME/.bash"`
+  `rm "$HOME/.bash_profile"`
+  `rm "$HOME/.bash_prompt"`
+  `rm "$HOME/.tmux"`
+  `rm "$HOME/.tmux.conf"`
+  `rm "$HOME/.vim"`
+  `rm "$HOME/.vimrc"`
+end
+
 task :default => 'install'
 
