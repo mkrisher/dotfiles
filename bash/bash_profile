@@ -1,6 +1,8 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 
+export EDITOR='vim';
+
 if [[ "$OSTYPE" =~ ^linux ]]; then
   for file in ~/.bash/{bash_prompt,unix_aliases}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
