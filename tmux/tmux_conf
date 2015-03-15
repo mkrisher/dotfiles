@@ -81,9 +81,9 @@ unbind Down
 bind Down resize-pane -D 50
 #bind Down last-window \; swap-pane -s tmp.1 \; kill-window -t tmp
 
-# set the tmux shell to zsh
-set -g default-command /bin/zsh
-set -g default-shell /bin/zsh
+# set the tmux shell to bash
+set -g default-command /bin/bash
+set -g default-shell /bin/bash
 
 # tmux powerline
 #set-option -g status on
