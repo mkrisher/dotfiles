@@ -13,3 +13,5 @@ alias testlog='tail -f log/test.log'
 alias rspec='bundle exec rspec'
 alias pyrepl="ptpython --vi"
 
+# project shortcuts
+alias dev="~/.tmux/conduit"
