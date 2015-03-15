@@ -14,4 +14,4 @@ alias rspec='bundle exec rspec'
 alias pyrepl="ptpython --vi"
 
 # project shortcuts
-alias dev="~/.tmux/conduit"
+alias dev="~/.tmux/dev"
