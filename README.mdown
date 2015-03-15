@@ -1,21 +1,11 @@
 mkrisher's dot-files
 ====================
 
-My dot-files related to zsh, vim, etc....
+```
+git clone https://github.com/mkrisher/dotfiles.git
 
-I used to use Janus and Macvim. I'm going as basic Vim as possible. Keeping it simple.
+cd dotfiles
 
-I do install Macvim via homebrew so I can use the Cocoa version of Vim that is 
-included versus the default vim OS X version:
+rake install
+```
 
-`brew install macvim --override-system-vim --with-ruby-command=/usr/bin/ruby`
-
-a couple of files are referenced in zshrc
-one is a logins file. I alias a lot of ssh logins, makes
-it easier for me to remember, especially using ssh keys and 
-unusual ports. For example, a staging server gets aliased like:
-alias login_stage='ssh rails@staging.server.com'
-
-a second source file is for projects. I alias a lot of file paths, 
-it makes it easier for me to jump to the root of projects in the 
-the terminal and start some of my other aliases like watchr or showlog.
