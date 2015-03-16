@@ -30,5 +30,6 @@ alias adv="~/.dotfiles/tmux/adventures"
 # shortcuts
 alias wee="weechat-curses"
 alias update_wee="cd /Users/mkrisher/.weechat/python && curl -O https://raw.githubusercontent.com/rawdigits/wee-slack/master/wee_slack.py && cd -"
+alias bitlbee="/usr/local/Cellar/bitlbee/3.2.2/sbin/bitlbee"
 alias encrypt='encfs ~/Dropbox/Private/ ~/Private/ -o volname="Dropbox private",allow_other'
 
