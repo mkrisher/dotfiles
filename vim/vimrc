@@ -212,3 +212,8 @@ function Search(term)
   Ag a:term 
   "--ignore-dir vendor --ignore-dir data --ignore-dir mojo --ignore-dir assets
 endfunc
+
+"""""""""""""""""""""""
+" formatting
+"""""""""""""""""""""""
+au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
