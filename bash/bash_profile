@@ -11,7 +11,7 @@ if [[ "$OSTYPE" =~ ^linux ]]; then
 fi;
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-  for file in ~/.bash/{bash_prompt,mac_aliases,openvpn,ssh}; do
+  for file in ~/.bash/{bash_prompt,mac_aliases,openvpn,ssh,unix_aliases}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
   done;
   unset file;
