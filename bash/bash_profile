@@ -2,6 +2,7 @@
 export PATH="$HOME/bin:$PATH";
 
 export EDITOR='vim';
+export TERM=screen-256color
 
 if [[ "$OSTYPE" =~ ^linux ]]; then
   for file in ~/.bash/{bash_prompt,unix_aliases}; do
