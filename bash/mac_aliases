@@ -20,8 +20,8 @@ alias httpdump_wd='sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E "Host\: .*|G
 alias httpdump_wl='sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*"'
 
 # project utilities
-alias dev="ssh d1-dev-mkrisher"
-alias dev_new="ssh d1-dev-mike"
+alias dev_old="ssh d1-dev-mkrisher"
+alias devi="ssh d1-dev-mike"
 alias prodworker="ssh d1-site-utility-worker"
 alias repos='cd ~/Documents/projects/repos && clear'
 alias resourcery="~/.dotfiles/tmux/resourcery"
