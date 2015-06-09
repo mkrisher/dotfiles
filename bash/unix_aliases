@@ -10,7 +10,7 @@ alias resource='source ~/.bash_profile'
 alias reload='exec $SHELL -l'
 alias devlog='tail -f log/development.log'
 alias testlog='tail -f log/test.log'
-alias rspec='bundle exec rspec'
+alias spec='bundle exec rspec'
 alias pyrepl="ptpython --vi"
 
 # project shortcuts
