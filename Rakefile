@@ -9,7 +9,6 @@ task :install do
   # symlink the .vim directory
   # symlink the .vimrc file
   # install vim plugins
-  # move the solarized file
 
   `ln -s "$PWD/bash" "$HOME/.bash"`
   `ln -s "$PWD/bash/bash_profile" "$HOME/.bash_profile"`
@@ -19,7 +18,6 @@ task :install do
   `ln -s "$PWD/vim" "$HOME/.vim"`
   `ln -s "$PWD/vim/vimrc" "$HOME/.vimrc"`
   `vim +PluginInstall +qall`
-  `mv "$HOME/.vim/bundle/vim-colors-solarized/colors/solarized.vim" "$HOME/.vim/colors/solarized.vim"`
 end
 
 desc "remove symlinked dotfiles"
