@@ -1,6 +1,6 @@
 # services
 alias vi='vim'
-alias vim="/usr/local/Cellar/vim/7.4.430_1/bin/vim"
+alias vim="/usr/local/Cellar/vim/7.4.884/bin/vim"
 alias mysqlstart='mysql.server start'
 alias mysqlstop='mysql.server stop'
 alias mongostart='mongod run --config /usr/local/Cellar/mongodb/2.0.0-x86_64/mongod.conf &'
@@ -10,6 +10,7 @@ alias pgstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/serv
 alias pgstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 alias elastic='elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
 alias tmux="TERM=screen-256color-bce tmux"
+alias dockerenv='eval "$(docker-machine env default)"'
 
 # shell commmands
 alias dnsflush='dscacheutil -flushcache; sudo /usr/bin/killall -HUP mDNSResponder'
@@ -20,7 +21,7 @@ alias httpdump_wd='sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E "Host\: .*|G
 alias httpdump_wl='sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*"'
 
 # project utilities
-alias dev_old="ssh d1-dev-mkrisher"
+alias devn="ssh dev-mike"
 alias devi="ssh d1-dev-mike"
 alias prodworker="ssh d1-site-utility-worker"
 alias repos='cd ~/Documents/projects/repos && clear'
