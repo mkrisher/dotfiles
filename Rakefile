@@ -17,6 +17,7 @@ task :install do
   `ln -s "$PWD/tmux/tmux_conf" "$HOME/.tmux.conf"`
   `ln -s "$PWD/vim" "$HOME/.vim"`
   `ln -s "$PWD/vim/vimrc" "$HOME/.vimrc"`
+  `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
   `vim +PluginInstall +qall`
 end
 
