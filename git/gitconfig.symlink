@@ -1,0 +1,15 @@
+[core]
+  editor = vim
+[color]
+  ui = true
+[alias]
+  st = status
+  cm = commit
+  br = branch
+  co = checkout
+  df = diff
+  lg = log -p
+  lo = log --pretty=oneline
+  pom = pull origin master
+  pop = stash pop
+  save = stash save·
