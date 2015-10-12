@@ -18,7 +18,7 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-scripts/Align'
 Plugin 'fatih/vim-go'
-Plugin 'keith/rspec'
+Plugin 'keith/rspec.vim'
 Plugin 'SirVer/ultisnips'
 
 " Vundle help
