@@ -1,5 +1,5 @@
 # Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
+export PATH="$HOME/bin:/usr/local/sbin:$PATH";
 
 export EDITOR='vim';
 export TERM=screen-256color
@@ -66,4 +66,8 @@ if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
 fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
+
+GOPATH=/Users/mkrisher/Documents/projects/repos/gocode
+export GOPATH=$GOPATH
+export PATH=$GOPATH/bin:$PATH
 
