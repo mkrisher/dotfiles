@@ -21,7 +21,7 @@ alias httpdump_wd='sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E "Host\: .*|G
 alias httpdump_wl='sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*"'
 
 # project utilities
-alias devn="ssh dev-mike"
+alias devn="ssh -A dev-mike"
 alias devi="ssh d1-dev-mike"
 alias prodworker="ssh d1-site-utility-worker"
 alias repos='cd ~/Documents/projects/repos && clear'
@@ -32,5 +32,6 @@ alias adv="~/.dotfiles/tmux/adventures"
 alias wee="weechat-curses"
 alias update_wee="cd /Users/mkrisher/.weechat/python && curl -O https://raw.githubusercontent.com/rawdigits/wee-slack/master/wee_slack.py && cd -"
 alias bitlbee="/usr/local/Cellar/bitlbee/3.2.2/sbin/bitlbee"
-alias encrypt='encfs ~/Dropbox/Private/ ~/Private/ -o volname="Dropbox private",allow_other'
+alias encrypt_private='encfs ~/Dropbox/Private/ ~/Private/ -o volname="Dropbox private"'
+alias decrypt_private='umount ~/Dropbox/Private/'
 
