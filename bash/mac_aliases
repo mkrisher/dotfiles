@@ -23,7 +23,7 @@ alias httpdump_wl='sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E "Host\: .*|G
 # project utilities
 alias devn="ssh -A dev-mike"
 alias devi="ssh d1-dev-mike"
-alias prodworker="ssh d1-site-utility-worker"
+alias prodworker="ssh -A d1-site-utility-worker"
 alias repos='cd ~/Documents/projects/repos && clear'
 alias resourcery="~/.dotfiles/tmux/resourcery"
 alias adv="~/.dotfiles/tmux/adventures"
@@ -34,4 +34,6 @@ alias update_wee="cd /Users/mkrisher/.weechat/python && curl -O https://raw.gith
 alias bitlbee="/usr/local/Cellar/bitlbee/3.2.2/sbin/bitlbee"
 alias encrypt_private='encfs ~/Dropbox/Private/ ~/Private/ -o volname="Dropbox private"'
 alias decrypt_private='umount ~/Dropbox/Private/'
+alias bfg='java -jar ~/bfg.jar'
+alias weather='wego'
 
