@@ -13,3 +13,6 @@
   pom = pull origin master
   pop = stash pop
   save = stash save·
+[user]
+	name = Mike Krisher
+	email = mike@mikekrisher.com
