@@ -68,6 +68,7 @@ if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
 fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
 
+# go config
 GOPATH=/Users/mkrisher/Documents/projects/repos/gocode
 export GOPATH=$GOPATH
 export PATH=$GOPATH/bin:$PATH
