@@ -68,8 +68,8 @@ unbind [
 bind Escape copy-mode
 #unbind p
 #bind p paste-buffer
-bind -t vi-copy 'v' begin-selection
-bind -t vi-copy 'y' copy-selection
+#bind -t vi-copy 'v' begin-selection
+#bind -t vi-copy 'y' copy-selection
 
 # use Up key to maximize a pane
 unbind Up
@@ -90,5 +90,8 @@ set-option -g status-right '#(cat ~/.pomo_stat)'
 
 #underline statusbar window list on update
 setw -g monitor-activity on
-setw -g window-status-content-attr underscore
+#setw -g window-status-content-attr underscore
 setw -g window-status-activity-attr underscore
+
+# don't rename windows automatically
+set-option -g allow-rename off
