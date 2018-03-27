@@ -17,19 +17,15 @@ alias dnsf="dscacheutil -flushcache; sudo discoveryutil mdnsflushcache"
 alias httpdump_wd='sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*"'
 # watch http requests on the airport on a mac
 alias httpdump_wl='sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*"'
+alias bfg='java -jar ~/bfg.jar'
+alias decrypt='encfs ~/Dropbox/Private/ ~/Private/ -o volname="Dropbox private"'
+alias encrypt='umount ~/Dropbox/Private/'
+alias play='activator'
+alias scan='nmap -sP 192.168.2.1/24'
 
 # project utilities
 alias code='cd ~/Private/code && clear'
 alias adv="~/.tmux/adventures"
 alias craft="~/.tmux/craftsmanship"
 alias kids="~/.tmux/kids"
-
-# shortcuts
-alias wee="weechat-curses"
-alias update_wee="cd /Users/mkrisher/.weechat/python && curl -O https://raw.githubusercontent.com/rawdigits/wee-slack/master/wee_slack.py && cd -"
-alias bitlbee="/usr/local/Cellar/bitlbee/3.2.2/sbin/bitlbee"
-alias bfg='java -jar ~/bfg.jar'
-alias decrypt='encfs ~/Dropbox/Private/ ~/Private/ -o volname="Dropbox private"'
-alias encrypt='umount ~/Dropbox/Private/'
-alias play='activator'
 

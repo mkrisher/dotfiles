@@ -73,3 +73,5 @@ GOPATH=/Users/mkrisher/Documents/projects/repos/gocode
 export GOPATH=$GOPATH
 export PATH=$GOPATH/bin:$PATH
 
+# include non-committed env variables
+source ~/.env
