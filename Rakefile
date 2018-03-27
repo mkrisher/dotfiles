@@ -8,6 +8,8 @@ task :install do
   # symlink the .tmux.conf file
   # symlink the .vim directory
   # symlink the .vimrc file
+  # symlink the .gitconfig file
+  # symlink the .config/neovim files
   # install vim plugins
 
   `ln -s "$PWD/bash" "$HOME/.bash"`
@@ -18,6 +20,7 @@ task :install do
   `ln -s "$PWD/vim" "$HOME/.vim"`
   `ln -s "$PWD/vim/vimrc" "$HOME/.vimrc"`
   `ln -s "$PWD/git/gitconfig.symlink" "$HOME/.gitconfig"`
+  `ln -s "$PWD/config" "$HOME/.config"`
   `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
   `vim +PluginInstall +qall`
 end
@@ -31,6 +34,7 @@ task :uninstall do
   `rm "$HOME/.tmux.conf"`
   `rm "$HOME/.vim"`
   `rm "$HOME/.vimrc"`
+  `rm "$HOME/.config"`
 end
 
 task :default => 'install'
