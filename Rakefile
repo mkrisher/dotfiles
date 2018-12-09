@@ -16,18 +16,26 @@ task :install do
   `ln -s "$PWD/bash" "$HOME/.bash"`
   `ln -s "$PWD/bash/bash_profile" "$HOME/.bash_profile"`
   `ln -s "$PWD/bash/bash_prompt" "$HOME/.bash_prompt"`
+
   `ln -s "$PWD/tmux" "$HOME/.tmux"`
   `ln -s "$PWD/tmux/tmux_conf" "$HOME/.tmux.conf"`
+
   `ln -s "$PWD/vim" "$HOME/.vim"`
   `ln -s "$PWD/vim/vimrc" "$HOME/.vimrc"`
-  `ln -s "$PWD/git/gitconfig.symlink" "$HOME/.gitconfig"`
-  `ln -s "$PWD/config" "$HOME/.config"`
-  `ln -s "$PWD/sbt" "$HOME/.sbt"`
-  `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
-  `vim +PluginInstall +qall`
 
-  # install pips
-  `pip install websocket-client sexpdata neovim`
+  `ln -s "$PWD/git/gitconfig.symlink" "$HOME/.gitconfig"`
+
+  `ln -s "$PWD/sbt" "$HOME/.sbt"`
+
+  # assumes vundle is not already copied over and in place
+  	#`git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+  	#`vim +PluginInstall +qall`
+  
+  # symlink neovim configuration file
+  `ln -s "$PWD/config" "$HOME/.config"`
+
+  # install pips (assumes pip3 installed)
+  `pip3 install websocket-client sexpdata neovim`
 end
 
 desc "remove symlinked dotfiles"
@@ -39,7 +47,7 @@ task :uninstall do
   `rm "$HOME/.tmux.conf"`
   `rm "$HOME/.vim"`
   `rm "$HOME/.vimrc"`
-  `rm "$HOME/.config"`
+  `rm -Rf "$HOME/configurations"`
   `rm "$HOME/.sbt"`
 end
 

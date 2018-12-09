@@ -1,38 +1,47 @@
 set nocompatible
 filetype off
 
-" Specify a directory for plugins
-call plug#begin('~/.config/nvim/plugged')
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.config/nvim/plugged/Vundle.vim
+call vundle#begin()            " required
+Plugin 'VundleVim/Vundle.vim'  " required
 
-Plug 'gmarik/Vundle.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'rking/ag.vim'
-Plug 'kien/ctrlp.vim'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'altercation/vim-colors-solarized'
-Plug 'vim-scripts/Align'
-Plug 'fatih/vim-go'
-Plug 'keith/rspec.vim'
-Plug 'SirVer/ultisnips'
-Plug 'derekwyatt/vim-scala'
-Plug 'ensime/ensime-vim'
-Plug 'vim-syntastic/syntastic'
-Plug 'whatyouhide/vim-gotham'
+" ===================
+" my plugins
+" ===================
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'rking/ag.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-scripts/Align'
+Plugin 'fatih/vim-go'
+Plugin 'keith/rspec.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'ensime/ensime-vim'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'whatyouhide/vim-gotham'
 
+" ===================
+" end plugins
+" ===================
+"
 " :PlugList       - lists configured plugins
 " :PlugInstall    - installs plugins; append `!` to update or just :PluginUpdate
 
 " Initialize plugin system
-call plug#end()
-
+call vundle#end()
 filetype plugin indent on
+
+
 syntax enable
 
 set showcmd                       " Display incomplete commands.
