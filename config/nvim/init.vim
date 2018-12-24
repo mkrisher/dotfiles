@@ -11,6 +11,7 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'rking/ag.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'bling/vim-airline'
@@ -22,9 +23,11 @@ Plug 'fatih/vim-go'
 Plug 'keith/rspec.vim'
 Plug 'SirVer/ultisnips'
 Plug 'derekwyatt/vim-scala'
-Plug 'ensime/ensime-vim'
-Plug 'vim-syntastic/syntastic'
+"Plug 'ensime/ensime-vim' // not supported in Python 3
+"Plug 'vim-syntastic/syntastic'
 Plug 'whatyouhide/vim-gotham'
+Plug 'moll/vim-node'
+Plug 'mhartington/nvim-typescript'
 
 " :PlugList       - lists configured plugins
 " :PlugInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -169,8 +172,6 @@ highlight Normal ctermbg=NONE
 imap <c-l> <space>=><space>
 " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
-" Show hide NERDTree
-nmap <silent> <leader> :NERDTreeToggle<CR>
 " Show netrw explore
 nmap <leader>e :Explore<cr>
 " clear search highlights:
@@ -237,6 +238,7 @@ endfunc
 " formatting
 """""""""""""""""""""""
 au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
 """""""""""""""""""""""
 " Go
@@ -259,17 +261,43 @@ let g:UltiSnipsEditSplit="<c-e>"
 """"""""""""""""""""""
 " Syntastic
 """"""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 """""""""""""""""""""""
 " ENSIME
 """""""""""""""""""""""
 au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
+
+"""""""""""""""""""""""
+" Nerdtree
+"""""""""""""""""""""""
+" open at launch
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" close tree if only remaining tab
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Show hide NERDTree
+nmap <silent> <leader> :NERDTreeToggle<CR>
+
+" open tree at current file
+nnoremap <silent> <Leader>f :NERDTreeFind<CR>
+
+" automatically close tree when opening a file
+let NERDTreeQuitOnOpen = 1
+
+" automatically rmeove buffer of deleted file
+let NERDTreeAutoDeleteBuffer = 1
+
+" cleanup visuals
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
