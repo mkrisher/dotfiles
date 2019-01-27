@@ -1,4 +1,6 @@
 .DS_Store
 vim/colors/solarized.vim
 vim/bundle
+config/nvim/plugged
+sbt
 

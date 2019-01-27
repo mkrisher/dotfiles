@@ -4,17 +4,18 @@ filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.config/nvim/plugged/Vundle.vim
 call vundle#begin()            " required
-Plugin 'VundleVim/Vundle.vim'  " required
 
 " ===================
 " my plugins
 " ===================
+Plugin 'whatyouhide/vim-gotham'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
@@ -28,7 +29,6 @@ Plugin 'SirVer/ultisnips'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'ensime/ensime-vim'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'whatyouhide/vim-gotham'
 
 " ===================
 " end plugins
@@ -40,6 +40,11 @@ Plugin 'whatyouhide/vim-gotham'
 " Initialize plugin system
 call vundle#end()
 filetype plugin indent on
+
+
+
+
+
 
 
 syntax enable
@@ -178,8 +183,6 @@ highlight Normal ctermbg=NONE
 imap <c-l> <space>=><space>
 " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
-" Show hide NERDTree
-nmap <silent> <leader> :NERDTreeToggle<CR>
 " Show netrw explore
 nmap <leader>e :Explore<cr>
 " clear search highlights:
@@ -246,6 +249,7 @@ endfunc
 " formatting
 """""""""""""""""""""""
 au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
 """""""""""""""""""""""
 " Go
@@ -268,17 +272,43 @@ let g:UltiSnipsEditSplit="<c-e>"
 """"""""""""""""""""""
 " Syntastic
 """"""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 """""""""""""""""""""""
 " ENSIME
 """""""""""""""""""""""
 au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
+
+"""""""""""""""""""""""
+" Nerdtree
+"""""""""""""""""""""""
+" open at launch
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" close tree if only remaining tab
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Show hide NERDTree
+nmap <silent> <leader> :NERDTreeToggle<CR>
+
+" open tree at current file
+nnoremap <silent> <Leader>f :NERDTreeFind<CR>
+
+" automatically close tree when opening a file
+let NERDTreeQuitOnOpen = 1
+
+" automatically rmeove buffer of deleted file
+let NERDTreeAutoDeleteBuffer = 1
+
+" cleanup visuals
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
