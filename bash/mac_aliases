@@ -28,4 +28,5 @@ alias code='cd ~/Private/code && clear'
 alias adv="~/.tmux/adventures"
 alias craft="~/.tmux/craftsmanship"
 alias kids="~/.tmux/kids"
+alias krisher="~/.tmux/krisher"
 
