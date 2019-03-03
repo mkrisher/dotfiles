@@ -15,6 +15,7 @@ task :install do
 
   `ln -s "$PWD/bash" "$HOME/.bash"`
   `ln -s "$PWD/bash/bash_profile" "$HOME/.bash_profile"`
+  `ln -s "$HOME/.bash_profile" "$HOME/.bashrc"`
   `ln -s "$PWD/bash/bash_prompt" "$HOME/.bash_prompt"`
 
   `ln -s "$PWD/tmux" "$HOME/.tmux"`
@@ -30,7 +31,7 @@ task :install do
   # assumes vundle is not already copied over and in place
   	#`git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
   	#`vim +PluginInstall +qall`
-  
+
   # symlink neovim configuration file
   `ln -s "$PWD/config" "$HOME/.config"`
 
