@@ -29,6 +29,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'ensime/ensime-vim'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'leafgarland/typescript-vim'
 
 " ===================
 " end plugins
