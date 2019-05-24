@@ -29,3 +29,4 @@ alias adv="~/.tmux/adventures"
 alias craft="~/.tmux/craftsmanship"
 alias kids="~/.tmux/kids"
 
+source ~/.aliases
