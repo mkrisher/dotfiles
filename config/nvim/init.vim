@@ -84,8 +84,8 @@ set softtabstop=2
 set expandtab
 
 set laststatus=2                  " Show the status line all the time
-set showtabline=2
-set winwidth=79
+set showtabline=0                 " use 2 to show tabs
+set winwidth=81
 
 set cursorline
 if &term =~ "xterm\\|rxvt"
@@ -101,7 +101,7 @@ endif
 
 set spelllang=en_us
 
-"set colorcolumn=80                " show vertical line at 80 column
+set colorcolumn=80                " show vertical line at 80 column
 
 "folding settings
 set foldmethod=indent   "fold based on indent
@@ -240,10 +240,10 @@ let g:airline_section_y = '%{strftime("%c")}'
 """"""""""""""""""""""""
 " silver surfer search
 """"""""""""""""""""""""
-function Search(term)
-  Ag a:term 
-  "--ignore-dir vendor --ignore-dir data --ignore-dir mojo --ignore-dir assets
-endfunc
+"function Search(term)
+"  Ag a:term 
+"  "--ignore-dir vendor --ignore-dir data --ignore-dir mojo --ignore-dir assets
+"endfunc
 
 """""""""""""""""""""""
 " formatting
@@ -305,7 +305,7 @@ nnoremap <silent> <Leader>f :NERDTreeFind<CR>
 " automatically close tree when opening a file
 let NERDTreeQuitOnOpen = 1
 
-" automatically rmeove buffer of deleted file
+" automatically remove buffer of deleted file
 let NERDTreeAutoDeleteBuffer = 1
 
 " cleanup visuals
