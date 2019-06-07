@@ -241,10 +241,10 @@ let g:airline_section_y = '%{strftime("%c")}'
 """"""""""""""""""""""""
 " silver surfer search
 """"""""""""""""""""""""
-function Search(term)
-  Ag a:term 
-  "--ignore-dir vendor --ignore-dir data --ignore-dir mojo --ignore-dir assets
-endfunc
+"function Search(term)
+"  Ag a:term 
+"  "--ignore-dir vendor --ignore-dir data --ignore-dir mojo --ignore-dir assets
+"endfunc
 
 """""""""""""""""""""""
 " formatting
