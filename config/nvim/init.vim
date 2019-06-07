@@ -313,3 +313,6 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
+" format JSON
+com! FormatJSON %!python -m json.tool
+

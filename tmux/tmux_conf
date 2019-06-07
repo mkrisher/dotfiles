@@ -1,3 +1,6 @@
+# run bash for every session and window
+set-option -g default-command "source ~/.bash_profile"
+
 # remap tmux prefix to control - a
 set -g prefix C-a
 
