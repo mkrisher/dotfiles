@@ -68,3 +68,6 @@ export PATH=$GOPATH/bin:$PATH
 
 # include non-committed env variables
 source ~/.env
+
+# load rvm
+source ~/.rvm/scripts/rvm
