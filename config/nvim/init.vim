@@ -23,13 +23,11 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-scripts/Align'
-Plugin 'fatih/vim-go'
 Plugin 'keith/rspec.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'derekwyatt/vim-scala'
-Plugin 'ensime/ensime-vim'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'leafgarland/typescript-vim'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'w0rp/ale'
 
 " ===================
 " end plugins
@@ -129,9 +127,13 @@ vnoremap <tab> %
 
 " JSON syntax highlighting
 au BufRead,BufNewFile *.json set filetype=json
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 "Rspec syntax hightlighting
 au BufRead,BufNewFile *_spec.rb set filetype=rspec
+
+" scale
+au BufRead,BufNewFile *.sbt set filetype=scala
 
 " Turn off auto-indention
 map ni :set invai<cr>
@@ -238,6 +240,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='solarized'
 let g:airline_solarized_bg='dark'
 let g:airline_section_y = '%{strftime("%c")}'
+let g:airline#extensions#tabline#enabled = 0
 
 """"""""""""""""""""""""
 " silver surfer search
@@ -282,11 +285,6 @@ let g:UltiSnipsEditSplit="<c-e>"
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
-
-"""""""""""""""""""""""
-" ENSIME
-"""""""""""""""""""""""
-au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
 
 """""""""""""""""""""""
 " Nerdtree
