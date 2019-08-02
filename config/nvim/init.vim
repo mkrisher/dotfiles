@@ -28,6 +28,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'w0rp/ale'
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " ===================
 " end plugins
@@ -314,4 +315,7 @@ let NERDTreeDirArrows = 1
 
 " format JSON
 com! FormatJSON %!python -m json.tool
+
+" deoplete config
+let g:deoplete#enable_at_startup = 1
 
