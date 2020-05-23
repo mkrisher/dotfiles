@@ -1,8 +1,8 @@
 .DS_Store
 vim/colors/solarized.vim
-vim/bundle
+vim/bundle/*
 config/nvim/plugged
 config/nvim/.netrwhist
 config/configstore/
 sbt
-
+tmux/plugins/*
