@@ -101,6 +101,8 @@ setw -g window-status-activity-attr underscore
 
 # don't rename windows automatically
 set-option -g allow-rename off
+setw -g automatic-rename  on    # rename windows automatically
+setw -g monitor-activity  on
 
 # tmux plugin manager
 set -g @plugin 'jimeh/tmux-themepack'

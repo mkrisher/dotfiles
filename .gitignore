@@ -3,5 +3,6 @@ vim/colors/solarized.vim
 vim/bundle
 config/nvim/plugged
 config/nvim/.netrwhist
+config/configstore/
 sbt
 
