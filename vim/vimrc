@@ -21,8 +21,6 @@ Plugin 'vim-scripts/Align'
 Plugin 'fatih/vim-go'
 Plugin 'keith/rspec.vim'
 Plugin 'SirVer/ultisnips'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'ensime/ensime-vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'whatyouhide/vim-gotham'
 
