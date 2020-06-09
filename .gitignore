@@ -7,3 +7,5 @@ config/nvim/plugins/node_modules/
 node_modules
 sbt
 tmux/plugins/*
+config/nvim/plugins/*.log
+*.log
