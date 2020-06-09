@@ -86,16 +86,6 @@ let g:airline_section_y = '%{strftime("%c")}'
 au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
-"""""""""""""""""""""""
-" Go
-"""""""""""""""""""""""
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-
-au FileType go exe ":set nolist"
-
 """"""""""""""""""""""
 " Snippets
 """"""""""""""""""""""
@@ -103,11 +93,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="<c-e>"
-
-"""""""""""""""""""""""
-" ENSIME
-"""""""""""""""""""""""
-au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
 
 """""""""""""""""""""""
 " Nerdtree
@@ -135,6 +120,8 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-" deoplete config
+"""""""""""""""""""""
+" deoplete
+"""""""""""""""""""""
 let g:deoplete#enable_at_startup = 1
 
