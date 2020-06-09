@@ -21,6 +21,7 @@ alias resource='source ~/.zshrc'
 
 # project utilities
 alias code='cd ~/Private/code && clear'
+alias dot='cd ~/dotfiles'
 
 # source local environment aliases
 source ~/.aliases
