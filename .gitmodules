@@ -1,0 +1,30 @@
+[submodule "config/nvim/plugged/Align"]
+  path = config/nvim/plugged/Align
+  ignore = dirty
+[submodule "config/nvim/plugged/bufexplorer"]
+  path = config/nvim/plugged/bufexplorer
+  ignore = dirty
+[submodule "config/nvim/plugged/nerdcommenter"]
+  ignore = dirty
+[submodule "config/nvim/plugged/nerdtree"]
+  ignore = dirty
+[submodule "config/nvim/plugged/rspec.vim"]
+  ignore = dirty
+[submodule "config/nvim/plugged/syntastic"]
+  ignore = dirty
+[submodule "config/nvim/plugged/ultisnips"]
+  ignore = dirty
+[submodule "config/nvim/plugged/vim-abolish"]
+  ignore = dirty
+[submodule "config/nvim/plugged/vim-airline"]
+  ignore = dirty
+[submodule "config/nvim/plugged/vim-airline-themes"]
+  ignore = dirty
+[submodule "config/nvim/plugged/vim-fugitive"]
+  ignore = dirty
+[submodule "config/nvim/plugged/vim-gotham"]
+  ignore = dirty
+[submodule "config/nvim/plugged/vim-rails"]
+  ignore = dirty
+[submodule "config/nvim/plugged/vim-surround"]
+  ignore = dirty
