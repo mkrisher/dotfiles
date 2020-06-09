@@ -3,7 +3,7 @@
 [color]
   ui = true
 [alias]
-  st = status
+  st = status --ignore-submodules=dirty
   cm = commit
   br = branch
   co = checkout
