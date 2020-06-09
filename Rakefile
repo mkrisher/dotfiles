@@ -35,6 +35,7 @@ task :install do
   ######################################## SBT
   `ln -s "$PWD/sbt" "$HOME/.sbt"`
 
+  # TODO: install pyenv first
   ######################################## Python
   `pip3 install websocket-client sexpdata neovim`
 
