@@ -2,6 +2,13 @@ require 'rake'
 
 desc "symlink dotfiles into system-standard positions"
 task :install do
+  # TODO: install homebrew
+  # TODO: install python3 using pyenv
+  # TODO: install neovim
+  # TODO: install rbenv
+  # TODO: install node
+  # TODO: install yarn
+
   ######################################## Bash
   `ln -s "$PWD/bash" "$HOME/.bash"`
   `ln -s "$PWD/bash/bash_profile" "$HOME/.bash_profile"`
@@ -22,12 +29,10 @@ task :install do
   ######################################## VIM
   `ln -s "$PWD/vim" "$HOME/.vim"`
   `ln -s "$PWD/vim/vimrc" "$HOME/.vimrc"`
-  # assumes vundle is not already copied over and in place
-  	#`git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
-  	#`vim +PluginInstall +qall`
 
   ######################################## Neovim
   `ln -s "$PWD/config" "$HOME/.config"`
+  #TODO: install vim-plug (sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
 
   ######################################## Git
   `ln -s "$PWD/git/gitconfig.symlink" "$HOME/.gitconfig"`
@@ -35,7 +40,6 @@ task :install do
   ######################################## SBT
   `ln -s "$PWD/sbt" "$HOME/.sbt"`
 
-  # TODO: install pyenv first
   ######################################## Python
   `pip3 install websocket-client sexpdata neovim`
 
