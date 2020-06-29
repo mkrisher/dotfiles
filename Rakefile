@@ -25,6 +25,10 @@ task :install do
   ######################################## TMUX
   `ln -s "$PWD/tmux" "$HOME/.tmux"`
   `ln -s "$PWD/tmux/tmux.conf" "$HOME/.tmux.conf"`
+  `cd /usr/local/bin`
+  `curl -O https://raw.githubusercontent.com/jdxcode/tmux-spotify-info/master/tmux-spotify-info`
+  `chmod 755 tmux-spotify-info`
+  `cd -`
 
   ######################################## VIM
   `ln -s "$PWD/vim" "$HOME/.vim"`
@@ -33,6 +37,8 @@ task :install do
   ######################################## Neovim
   `ln -s "$PWD/config" "$HOME/.config"`
   #TODO: install vim-plug (sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+  #TODO: yarn global add neovim
+  #TODO: gem install neovim
 
   ######################################## Git
   `ln -s "$PWD/git/gitconfig.symlink" "$HOME/.gitconfig"`
