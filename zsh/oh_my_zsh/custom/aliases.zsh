@@ -17,11 +17,19 @@ alias httpdump_wl='sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E "Host\: .*|G
 alias decrypt='encfs ~/Dropbox/Private/ ~/Private/ -o volname="Dropbox private"'
 alias encrypt='umount ~/Dropbox/Private/'
 alias scan='nmap -sP 192.168.2.1/24'
-alias resource='source ~/.zshrc'
+alias resource='exec "$SHELL"'
+alias wttr='curl wttr.in/cincinnati'
+
+# rails
+alias clean='be rake assets:clean'
+alias clobber='be rake assets:clobber'
+alias compile='be rake assets:precompile'
 
 # project utilities
 alias code='cd ~/Private/code && clear'
 alias dot='cd ~/dotfiles'
+alias portal='tmuxinator start portal'
+alias manager='tmuxinator start manager'
 
 # source local environment aliases
 source ~/.aliases
