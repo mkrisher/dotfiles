@@ -73,8 +73,7 @@ set directory=~/tmp/vim//
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set termguicolors
-"set t_Co=256
 set background=dark
-colorscheme gotham256
+colorscheme nord
 highlight Normal ctermbg=NONE
 

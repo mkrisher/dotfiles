@@ -4,7 +4,6 @@ filetype off
 " use vim-plug
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'whatyouhide/vim-gotham'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-rails'
@@ -22,6 +21,7 @@ Plug 'keith/rspec.vim'
 Plug 'SirVer/ultisnips'
 Plug 'vim-syntastic/syntastic'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 filetype plugin indent on
