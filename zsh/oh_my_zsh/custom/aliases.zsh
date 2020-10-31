@@ -20,8 +20,10 @@ alias scan='nmap -sP 192.168.2.1/24'
 alias resource='source ~/.zshrc'
 
 # project utilities
-alias code='cd ~/Private/code && clear'
+alias code='cd ~/code && clear'
 alias dot='cd ~/dotfiles'
+
+alias dp='code && cd datapeloton'
 
 # source local environment aliases
 source ~/.aliases
