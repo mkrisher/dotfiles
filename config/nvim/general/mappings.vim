@@ -114,7 +114,7 @@ nnoremap <silent> <Leader>f :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen = 1
 
 " automatically remove buffer of deleted file
-let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeAutoDeleteBuffer = 2
 
 " cleanup visuals
 let NERDTreeMinimalUI = 1

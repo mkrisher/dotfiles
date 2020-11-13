@@ -27,10 +27,12 @@ alias compile='be rake assets:precompile'
 alias jasmine='be rake jasmine:ci'
 
 # project utilities
-alias code='cd ~/Private/code && clear'
+alias code='cd ~/code && clear'
 alias dot='cd ~/dotfiles'
 alias portal='tmuxinator start portal'
 alias manager='tmuxinator start manager'
+
+alias dp='code && cd datapeloton'
 
 # source local environment aliases
 source ~/.aliases
