@@ -1,42 +1,42 @@
 [submodule "config/nvim/plugged/Align"]
   path = config/nvim/plugged/Align
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/bufexplorer"]
   path = config/nvim/plugged/bufexplorer
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/nerdcommenter"]
   path = config/nvim/plugged/nerdcommenter
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/nerdtree"]
   path = config/nvim/plugged/nerdtree
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/rspec.vim"]
   path = config/nvim/plugged/rspec.vim
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/syntastic"]
   path = config/nvim/plugged/syntastic
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/ultisnips"]
   path = config/nvim/plugged/ultisnips
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/vim-abolish"]
   path = config/nvim/plugged/vim-abolish
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/vim-airline"]
   path = config/nvim/plugged/vim-airline
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/vim-airline-themes"]
   path = config/nvim/plugged/vim-airline-themes
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/vim-fugitive"]
   path = config/nvim/plugged/vim-fugitive
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/vim-gotham"]
   path = config/nvim/plugged/vim-gotham
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/vim-rails"]
   path = config/nvim/plugged/vim-rails
-  ignore = dirty
+  ignore = all
 [submodule "config/nvim/plugged/vim-surround"]
   path = config/nvim/plugged/vim-surround
-  ignore = dirty
+  ignore = all
