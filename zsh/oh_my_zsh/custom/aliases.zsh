@@ -24,6 +24,7 @@ alias wttr='curl wttr.in/cincinnati'
 alias clean='be rake assets:clean'
 alias clobber='be rake assets:clobber'
 alias compile='be rake assets:precompile'
+alias jasmine='be rake jasmine:ci'
 
 # project utilities
 alias code='cd ~/Private/code && clear'
