@@ -3,7 +3,7 @@
 [color]
   ui = true
 [alias]
-  st = status --ignore-submodules=dirty
+  st = status --ignore-submodules
   cm = commit
   br = branch
   co = checkout
@@ -17,4 +17,4 @@
 	name = Mike Krisher
 	email = mike@mikekrisher.com
 [diff]
-	ignoreSubmodules = dirty
+	ignoreSubmodules = all
