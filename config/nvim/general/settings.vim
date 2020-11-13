@@ -77,3 +77,8 @@ set background=dark
 colorscheme nord
 highlight Normal ctermbg=NONE
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-airline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_powerline_fonts = 1
+let g:airline_theme='nord'
