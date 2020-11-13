@@ -16,3 +16,5 @@
 [user]
 	name = Mike Krisher
 	email = mike@mikekrisher.com
+[diff]
+	ignoreSubmodules = dirty
