@@ -5,6 +5,7 @@
   path = config/nvim/plugged/bufexplorer
   ignore = dirty
 [submodule "config/nvim/plugged/nerdcommenter"]
+  path = config/nvim/plugged/nerdcommenter
   ignore = dirty
 [submodule "config/nvim/plugged/nerdtree"]
   ignore = dirty
