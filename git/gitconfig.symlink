@@ -1,5 +1,6 @@
 [core]
   editor = nvim
+	excludesfile = /Users/mikekrisher/.config/git/ignore
 [color]
   ui = true
 [alias]
