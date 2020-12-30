@@ -9,5 +9,5 @@ sbt
 tmux/plugins/*
 config/nvim/plugins/*.log
 *.log
-fonts/*
+fonts
 tmux-spotify-info
