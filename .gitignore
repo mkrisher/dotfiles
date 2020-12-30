@@ -9,3 +9,4 @@ sbt
 tmux/plugins/*
 config/nvim/plugins/*.log
 *.log
+fonts/*
