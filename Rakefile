@@ -2,21 +2,7 @@ require 'rake'
 
 desc "symlink dotfiles into system-standard positions"
 task :install do
-  # TODO: install homebrew
-  # TODO: install python3 using pyenv
-  # TODO: install powerline fonts (https://github.com/powerline/fonts)
-  # TODO: install neovim
-  # TODO: install rbenv
-  # TODO: install node
-  # TODO: install yarn
-
-  ####################################### Fonts
-  #`git clone https://github.com/powerline/fonts.git`
-  #`cd fonts`
-  #`./install.sh`
-  #`cd -`
-
-  ######################################## Bash
+    ######################################## Bash
   `echo "bash files"`
   `ln -s "$PWD/bash" "$HOME/.bash"`
   `ln -s "$PWD/bash/bash_profile" "$HOME/.bash_profile"`
@@ -29,23 +15,26 @@ task :install do
 
   ######################################## oh-my-zsh
   `echo "oh-my-zsh files"`
-  `sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-  `sh -c "exit"`
   `ln -s "$PWD/zsh/oh_my_zsh/custom/aliases.zsh" "$HOME/.oh-my-zsh/custom/aliases.zsh"`
 
   ######################################## TMUX
   `echo "tmux files"`
-  `ln -s "$PWD/tmux" "$HOME/.tmux"`
-  `ln -s "$PWD/tmux/tmux.conf" "$HOME/.tmux.conf"`
+  `git clone https://github.com/jdxcode/tmux-spotify-info.git ~/.tmux/plugins/tmux-spotify-info`
+  `cp ~/.tmux/plugins/tmux-spotify-info/tmux-spotify-info /usr/local/bin`
   `cd /usr/local/bin`
-  `curl -O https://raw.githubusercontent.com/jdxcode/tmux-spotify-info/master/tmux-spotify-info`
   `chmod 755 tmux-spotify-info`
   `cd -`
+  `ln -s "$PWD/tmux" "$HOME/.tmux"`
+  `ln -s "$PWD/tmux/tmux.conf" "$HOME/.tmux.conf"`
 
   ######################################## VIM
   `echo "vim files"`
   `ln -s "$PWD/vim" "$HOME/.vim"`
   `ln -s "$PWD/vim/vimrc" "$HOME/.vimrc"`
+
+  ######################################## Git
+  `echo "git files"`
+  `ln -s "$PWD/git/gitconfig.symlink" "$HOME/.gitconfig"`
 
   ######################################## Neovim
   `echo "neovim files"`
@@ -57,24 +46,111 @@ task :install do
   `gem install neovim`
   `gem install solargraph`
 
-  ######################################## Git
-  `echo "git files"`
-  `brew install git`
-  `ln -s "$PWD/git/gitconfig.symlink" "$HOME/.gitconfig"`
-
-  ######################################## SBT
-  `echo "sbt files"`
-  `ln -s "$PWD/sbt" "$HOME/.sbt"`
-
-  ######################################## Python
-  `echo "python files"`
-  `pip3 install --upgrade pip`
-  `pip3 install --user websocket-client sexpdata neovim`
-
   ######################################## ENV files
   `echo "env files"`
   `touch $HOME/.aliases`
   `touch $HOME/.env`
+  `echo "local files for aliases and environment variables created in user directory"`
+
+  ######################################## messages
+  `echo "DONE!"`
+  `echo "- to install tmux plugins, open session and press prefix + I"`
+  `echo "- to install vim plugins, open session and run :PlugInstall"`
+  `echo "- Nord theme is avaibale for iterm: https://github.com/arcticicestudio/nord-iterm2"`
+end
+
+desc "remove symlinked dotfiles"
+task :uninstall do
+  `rm "$HOME/.bash"`
+  `rm "$HOME/.bash_profile"`
+  `rm "$HOME/.bashrc"`
+  `rm "$HOME/.bash_prompt"`
+  `rm "$HOME/.zshrc"`
+  `rm "$HOME/.tmux"`
+  `rm "$HOME/.tmux.conf"`
+  `rm "$HOME/.vim"`
+  `rm "$HOME/.vimrc"`
+  `rm "$HOME/.gitconfig"`
+  `rm "$HOME/.sbt"`
+  `rm -Rf "$HOME/.config"`
+  `rm -Rf "$HOME/.oh-my-zsh"`
+  `rm "$HOME/.aliases"`
+  `rm "$HOME/.env"`
+
+  # uninstall
+  # yarn,
+  # node,
+  # python (via pyenv),
+  # ruby (via rbenv),
+  # tmux,
+  #  oh-my-zsh
+  `pip3 uninstall websocket-client sexpdata neovim`
+  `npm uninstall @chemzqm/neovim`
+  `gem uninstall neovim`
+  `gem uninstall solargraph`
+end
+
+task :default => 'install'
+
+desc "install system dependencies required by dotfiles"
+task :dependencies do
+  ####################################### Homebrew
+  `echo "installing homebrew"`
+  `sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+
+  ####################################### Fonts
+  `echo "installing fonts"`
+  `git clone https://github.com/powerline/fonts.git`
+  `cd fonts`
+  `./install.sh`
+  `cd -`
+
+  ######################################## ZSH
+  `echo "installing zsh"`
+  `brew install zsh`
+
+  ######################################## oh-my-zsh
+  `echo "oh-my-zsh files"`
+  `sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+  `sh -c "exit"`
+
+  ######################################## TMUX
+  `echo "installing tmux"`
+  `brew install tmux`
+  `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+  # TODO: figure out how to activate tmux plugins (prefix + I)
+
+  ######################################## Git
+  `echo "installing git"`
+  `brew install git`
+
+  ######################################## Ruby
+  `echo "installing Ruby 2.7.2 via rbenv"`
+  `brew install rbenv`
+  `rbenv install 2.7.2`
+
+  ######################################## Python
+  `echo "installing Python 3.9.0 via pyenv"`
+  `brew install pyenv`
+  `pyenv install 3.9.0`
+  `pip3 install --upgrade pip`
+  `pip3 install --user websocket-client sexpdata neovim`
+
+  ######################################## Node
+  `brew install node`
+
+  ######################################## yarn
+  `npm install -g yarn`
+
+  ######################################## Neovim
+  `echo "installing neovim"`
+  `brew install neovim`
+
+  ######################################## messages
+  `echo "DONE!"`
+  `echo "- to install tmux plugins, open session and press prefix + I"`
+  `echo "- Nord theme is avaibale for iterm: https://github.com/arcticicestudio/nord-iterm2"`
+  `echo "- to install dotfiles run: rake install"`
 end
 
 desc "remove symlinked dotfiles"
