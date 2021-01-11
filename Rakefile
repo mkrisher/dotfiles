@@ -96,55 +96,112 @@ desc "install system dependencies required by dotfiles"
 task :dependencies do
   ####################################### Homebrew
   `echo "installing homebrew"`
-  `sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+  brew = `which brew`
+  if brew.empty?
+    `sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+  else
+    `echo "homebrew already installed"`
+  end
 
   ####################################### Fonts
   `echo "installing fonts"`
-  `git clone https://github.com/powerline/fonts.git`
-  `cd fonts`
-  `./install.sh`
-  `cd -`
+  dir = `ls | grep fonts`
+  if dir.empty?
+    `git clone https://github.com/powerline/fonts.git`
+    `cd fonts`
+    `./install.sh`
+    `cd -`
+  else
+    `echo "fonts already installed"`
+  end
 
   ######################################## ZSH
   `echo "installing zsh"`
-  `brew install zsh`
+  zsh = `which zsh`
+  if zsh.empty?
+    `brew install zsh`
+  else
+    `echo "zsh already installed"`
+  end
 
   ######################################## oh-my-zsh
   `echo "oh-my-zsh files"`
-  `sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-  `sh -c "exit"`
+  oh_my_zsh = `ls ~/.oh-my-zsh`
+  if oh_my_zsh.empty?
+    `sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+    `sh -c "exit"`
+  else
+    `echo "oh-my-zsh already installed"`
+  end
 
   ######################################## TMUX
   `echo "installing tmux"`
-  `brew install tmux`
-  `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
-  # TODO: figure out how to activate tmux plugins (prefix + I)
+  tmux = `which tmux`
+  if tmux.empty?
+    `brew install tmux`
+    `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+    # TODO: figure out how to activate tmux plugins (prefix + I)
+  else
+    `echo "tmux already installed"`
+  end
 
   ######################################## Git
   `echo "installing git"`
-  `brew install git`
+  git = `which git`
+  if git.empty?
+    `brew install git`
+  else
+    `echo "git already installed"`
+  end
 
   ######################################## Ruby
   `echo "installing Ruby 2.7.2 via rbenv"`
-  `brew install rbenv`
-  `rbenv install 2.7.2`
+  rbenv = `which rbenv`
+  if rbenv.empty?
+    `brew install rbenv`
+    `rbenv install 2.7.2`
+  else
+    `echo "rbenv already installed"`
+  end
 
   ######################################## Python
   `echo "installing Python 3.9.0 via pyenv"`
-  `brew install pyenv`
-  `pyenv install 3.9.0`
-  `pip3 install --upgrade pip`
-  `pip3 install --user websocket-client sexpdata neovim`
+  pyenv = `which pyenv`
+  if pyenv.empty?
+    `brew install pyenv`
+    `pyenv install 3.9.0`
+    `pip3 install --upgrade pip`
+    `pip3 install --user websocket-client sexpdata neovim`
+  else
+    `echo "pyenv already installed"`
+  end
 
   ######################################## Node
-  `brew install node`
+  `echo "installing node"`
+  node = `which node`
+  if node.empty?
+    `brew install node`
+  else
+    `echo "node already installed"`
+  end
 
   ######################################## yarn
-  `npm install -g yarn`
+  `echo "install yarn (for node)"`
+  yarn = `npm list -g | grep yarn`
+  if yarn.empty?
+    `npm install -g yarn`
+  else
+    `echo "yarn already installed"`
+  end
 
   ######################################## Neovim
   `echo "installing neovim"`
-  `brew install neovim`
+  nvim = `which nvim`
+  if nvim.empty?
+    `brew install neovim`
+  else
+    `echo "neovim already installed"`
+  end
 
   ######################################## messages
   `echo "DONE!"`
