@@ -36,6 +36,11 @@ task :install do
   `echo "git files"`
   `ln -s "$PWD/git/gitconfig.symlink" "$HOME/.gitconfig"`
 
+  ######################################## Ruby
+  `echo "ruby files"`
+  `gem install bundler`
+  `gem install tmuxinator`
+
   ######################################## Neovim
   `echo "neovim files"`
   `ln -s "$PWD/config" "$HOME/.config"`
@@ -45,6 +50,7 @@ task :install do
   `npm install -g @chemzqm/neovim`
   `gem install neovim`
   `gem install solargraph`
+  `brew install the_silver_searcher`
 
   ######################################## ENV files
   `echo "env files"`
