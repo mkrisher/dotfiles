@@ -9,8 +9,11 @@ vnoremap <tab> %
 " JSON syntax highlighting
 au BufRead,BufNewFile *.json set filetype=json
 
-"Rspec syntax hightlighting
+" Rspec syntax hightlighting
 au BufRead,BufNewFile *_spec.rb set filetype=rspec
+
+" Markdown formatting
+au BufRead,BufNewFile *.md setlocal textwidth=80
 
 " Turn off auto-indention
 "map ni :set invai<cr>
@@ -56,10 +59,10 @@ nnoremap <leader>s :split<cr><C-w>j
 nnoremap <leader><space> :noh<cr>
 " Navigating splits
 nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
 " reselect after indent/outdent
 vnoremap < <gv
 vnoremap > >gv
