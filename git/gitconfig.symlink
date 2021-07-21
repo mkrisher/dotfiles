@@ -19,3 +19,5 @@
 	email = mike@mikekrisher.com
 [diff]
 	ignoreSubmodules = all
+[init]
+	defaultBranch = main
