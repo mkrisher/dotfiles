@@ -66,6 +66,8 @@ nnoremap <leader>w <C-w>v<C-w>l
 " reselect after indent/outdent
 vnoremap < <gv
 vnoremap > >gv
+" reselect after paste
+nnoremap gp `[v`]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ARROW KEYS ARE UNACCEPTABLE
