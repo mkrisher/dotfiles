@@ -24,15 +24,10 @@ alias wttr='curl wttr.in/cincinnati'
 alias clean='be rake assets:clean'
 alias clobber='be rake assets:clobber'
 alias compile='be rake assets:precompile'
-alias jasmine='be rake jasmine:ci'
 
 # project utilities
 alias code='cd ~/code && clear'
 alias dot='cd ~/dotfiles'
-alias portal='tmuxinator start portal'
-alias manager='tmuxinator start manager'
-
-alias dp='code && cd datapeloton'
 
 # source local environment aliases
 source ~/.aliases
