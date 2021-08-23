@@ -1,7 +1,7 @@
-# /Users/mkrisher/.config/tmuxinator/dp.yml
+# /Users/mkrisher/.config/tmuxinator/sb.yml
 
-name: dp
-root: /Users/mkrisher/code/datapeloton
+name: sb
+root: /Users/mkrisher/code/schemabook
 
 # Optional tmux socket
 # socket_name: foo
@@ -45,7 +45,6 @@ root: /Users/mkrisher/code/datapeloton
 # attach: false
 
 windows:
-  - shell: git status
   - editor:
       layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
@@ -53,6 +52,6 @@ windows:
       # synchronize: after
       panes:
         - nvim
-        - bundle exec rspec
-  - server: bundle exec rails s
+        - clear
   - logs: tail -f log/development.log
+  - server: bundle exec rails s
