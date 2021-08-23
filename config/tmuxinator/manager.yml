@@ -53,5 +53,3 @@ windows:
       panes:
         - nvim
         - clear
-  - logs: tail -f log/development.log
-  - server: be rails s
