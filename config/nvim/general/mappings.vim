@@ -70,7 +70,7 @@ vnoremap > >gv
 nnoremap gp `[v`]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ARROW KEYS ARE UNACCEPTABLE
+" Disable Arrow Keys
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <Left> <Nop>
 map <Right> <Nop>
@@ -131,10 +131,22 @@ let NERDTreeDirArrows = 1
 let g:deoplete#enable_at_startup = 1
 
 """""""""""""""""""""
+" line highlights
+"""""""""""""""""""""
+" define line highlight color
+highlight LineHighlight ctermbg=darkgray guibg=darkgray
+
+" highlight the current line
+nnoremap <Leader>l :call matchadd('LineHighlight', '\%'.line('.').'l')<CR>
+
+" clear all the highlighted lines
+nnoremap <Leader>c :call clearmatches()<CR>
+
+"""""""""""""""""""""
 " abbreviations
 """""""""""""""""""""
 iabbrev teh the
 iabbrev destory destroy
 iabbrev <expr> ddd strftime('%c')
-iabbrev rdsc describe "" do<CR>end<CR><Up>
+iabbrev rdsc describe "" do<CR>end<CR>
 

@@ -20,7 +20,7 @@ ZSH_THEME="minimal"
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git ruby)
+plugins=(git ruby zsh-autosuggestions)
 
 source ~/.oh-my-zsh/oh-my-zsh.sh
 

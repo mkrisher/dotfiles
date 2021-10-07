@@ -9,13 +9,15 @@ task :install do
   `ln -s "$HOME/.bash_profile" "$HOME/.bashrc"`
   `ln -s "$PWD/bash/bash_prompt" "$HOME/.bash_prompt"`
 
+  ######################################## oh-my-zsh
+  `echo "oh-my-zsh files"`
+  `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+  `sh -c "$(git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions)"`
+  `ln -s "$PWD/zsh/oh_my_zsh/custom/aliases.zsh" "$HOME/.oh-my-zsh/custom/aliases.zsh"`
+
   ######################################## ZSH
   `echo "zsh files"`
   `ln -s "$PWD/zsh/zshrc" "$HOME/.zshrc"`
-
-  ######################################## oh-my-zsh
-  `echo "oh-my-zsh files"`
-  `ln -s "$PWD/zsh/oh_my_zsh/custom/aliases.zsh" "$HOME/.oh-my-zsh/custom/aliases.zsh"`
 
   ######################################## TMUX
   `echo "tmux files"`
@@ -80,8 +82,6 @@ task :uninstall do
   `rm "$HOME/.sbt"`
   `rm -Rf "$HOME/.config"`
   `rm -Rf "$HOME/.oh-my-zsh"`
-  `rm "$HOME/.aliases"`
-  `rm "$HOME/.env"`
 
   # uninstall
   # yarn,
