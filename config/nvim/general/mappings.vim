@@ -130,3 +130,11 @@ let NERDTreeDirArrows = 1
 """""""""""""""""""""
 let g:deoplete#enable_at_startup = 1
 
+"""""""""""""""""""""
+" abbreviations
+"""""""""""""""""""""
+iabbrev teh the
+iabbrev destory destroy
+iabbrev <expr> ddd strftime('%c')
+iabbrev rdsc describe "" do<CR>end<CR><Up>
+
