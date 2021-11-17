@@ -23,6 +23,8 @@ Plug 'vim-syntastic/syntastic'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'arcticicestudio/nord-vim'
 Plug 'troydm/zoomwintab.vim'
+Plug 'dewyze/vim-ruby-block-helpers'
+Plug 'godlygeek/tabular'
 
 call plug#end()
 filetype plugin indent on
