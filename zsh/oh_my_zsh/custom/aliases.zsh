@@ -5,7 +5,7 @@ alias mongostart='mongod run --config /usr/local/Cellar/mongodb/2.0.0-x86_64/mon
 alias redisstart='redis-server /usr/local/etc/redis.conf &'
 alias memcachestart='/usr/local/bin/memcached -d'
 alias elastic='elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
-alias tmux="TERM=screen-256color-bce tmux"
+#alias tmux="TERM=screen-256color-bce tmux"
 
 # shell commmands
 alias dnsflush='dscacheutil -flushcache; sudo /usr/bin/killall -HUP mDNSResponder'
