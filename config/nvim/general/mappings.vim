@@ -81,9 +81,13 @@ map <Down> <Nop>
 " vim-airline
 """"""""""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-let g:airline_section_y = '%{strftime("%c")}'
+let g:airline_theme='nord'
+let g:airline_solarized_bg='light'
+"let g:airline_section_y = '%{strftime("%c")}'
+
+let g:airline_section_b = '' " hide
+let g:airline_section_x = '' " hide
+let g:airline_section_y = '' " hide
 
 """""""""""""""""""""""
 " formatting

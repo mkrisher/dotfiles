@@ -73,9 +73,11 @@ set directory=~/tmp/vim//
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set termguicolors
-set background=dark
+
 colorscheme nord
 highlight Normal ctermbg=NONE
+let g:nord_uniform_status_lines = 1
+let g:nord_cursor_line_number_background = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-airline
