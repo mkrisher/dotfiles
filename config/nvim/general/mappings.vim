@@ -35,6 +35,21 @@ nmap <leader>ta :CtrlP app<cr>
 nmap <leader>tp :CtrlP spec<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" telescope
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Using Lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " short cuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Insert a hash rocket with <c-l>
@@ -114,10 +129,10 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Show hide NERDTree
-nmap <silent> <leader> :NERDTreeToggle<CR>
+nmap <silent> <leader>tt :NERDTreeToggle<CR>
 
 " open tree at current file
-nnoremap <silent> <Leader>f :NERDTreeFind<CR>
+nnoremap <silent> <Leader>tf :NERDTreeFind<CR>
 
 " automatically close tree when opening a file
 let NERDTreeQuitOnOpen = 1

@@ -26,6 +26,10 @@ Plug 'mkrisher/nord-vim'
 Plug 'troydm/zoomwintab.vim'
 Plug 'dewyze/vim-ruby-block-helpers'
 Plug 'godlygeek/tabular'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'BurntSushi/ripgrep'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 call plug#end()
 filetype plugin indent on
