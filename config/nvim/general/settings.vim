@@ -39,6 +39,10 @@ set showtabline=0                 " use 2 to show tabs
 set winwidth=81
 
 set cursorline
+
+set splitbelow
+set splitright
+
 if &term =~ "xterm\\|rxvt"
   " use an orange cursor in insert mode
   let &t_SI = "\<Esc>]12;orange\x7"

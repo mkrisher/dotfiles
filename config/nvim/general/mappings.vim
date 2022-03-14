@@ -134,7 +134,7 @@ let g:deoplete#enable_at_startup = 1
 " line highlights
 """""""""""""""""""""
 " define line highlight color
-highlight LineHighlight ctermbg=darkgray guibg=darkgray
+highlight LineHighlight ctermbg=lightred guibg=lightred
 
 " highlight the current line
 nnoremap <Leader>l :call matchadd('LineHighlight', '\%'.line('.').'l')<CR>
