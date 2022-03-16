@@ -129,10 +129,10 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Show hide NERDTree
-nmap <silent> <leader>tt :NERDTreeToggle<CR>
+nmap <silent> <leader>nt :NERDTreeToggle<CR>
 
 " open tree at current file
-nnoremap <silent> <Leader>tf :NERDTreeFind<CR>
+nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
 
 " automatically close tree when opening a file
 let NERDTreeQuitOnOpen = 1
