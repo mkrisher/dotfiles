@@ -4,6 +4,7 @@ config/nvim/plugged/*
 config/nvim/.netrwhist
 config/configstore/
 config/nvim/plugins/node_modules/
+config/raycast
 node_modules
 sbt
 tmux/plugins/*
