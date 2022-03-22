@@ -1,8 +1,5 @@
-# If you come from bash you might have to change your $PATH.
+# bash compatible
  export PATH=$HOME/bin:$PATH
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/.cargo/bin"
 
 # Adds sbin for homebrew
 export PATH="/usr/local/sbin:$PATH"
@@ -14,8 +11,8 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/dotfiles/zsh/oh-my-zsh"
+# Path to oh-my-zsh installation, assumes dotfiles in code directory rather than user dir
+export ZSH="$HOME/code/dotfiles/zsh/oh-my-zsh"
 
 # Set name of the theme to load
 ZSH_THEME="apple"
@@ -25,7 +22,7 @@ ZSH_THEME="apple"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git ruby zsh-autosuggestions)
 
-source ~/oh-my-zsh/oh-my-zsh.sh
+source ~/.oh-my-zsh/oh-my-zsh.sh
 
 # Preferred Java
 #export PATH="$HOME/.jenv/bin:$PATH"
@@ -38,8 +35,6 @@ eval "$(pyenv init --path)"
 
 # Preferred Ruby
 eval "$(rbenv init -)"
-
-export PATH=/usr/local/Cellar/the_silver_searcher/2.2.0/bin:$PATH
 
 # load environment specific files
 source ~/.env 
