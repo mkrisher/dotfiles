@@ -4,7 +4,7 @@ filetype off
 " use vim-plug
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
@@ -21,7 +21,7 @@ Plug 'vim-scripts/Align'
 Plug 'keith/rspec.vim'
 Plug 'SirVer/ultisnips'
 Plug 'vim-syntastic/syntastic'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'mkrisher/nord-vim'
 Plug 'troydm/zoomwintab.vim'
 Plug 'dewyze/vim-ruby-block-helpers'
