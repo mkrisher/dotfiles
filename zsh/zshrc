@@ -2,7 +2,7 @@
  export PATH=$HOME/bin:$PATH
 
 # Adds sbin for homebrew
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/opt/homebrew/bin:/usr/local/sbin:$PATH"
 
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -22,11 +22,7 @@ ZSH_THEME="apple"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git ruby zsh-autosuggestions)
 
-source ~/.oh-my-zsh/oh-my-zsh.sh
-
-# Preferred Java
-#export PATH="$HOME/.jenv/bin:$PATH"
-#eval "$(jenv init -)"
+source /Users/mkrisher/code/dotfiles/zsh/oh-my-zsh/oh-my-zsh.sh
 
 # Preferred Python
 export PYENV_ROOT="$HOME/.pyenv"
