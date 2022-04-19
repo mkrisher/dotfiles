@@ -24,21 +24,21 @@ au BufRead,BufNewFile *.md setlocal textwidth=80
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctrlp.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_working_path_mode = 0
-nmap <leader>t :CtrlP<cr>
-nmap <leader>tm :CtrlP app/models<cr>
-nmap <leader>tc :CtrlP app/controllers<cr>
-nmap <leader>ts :CtrlP app/services<cr>
-nmap <leader>tn :CtrlP app/connectors<cr>
-nmap <leader>tv :CtrlP app/views<cr>
-nmap <leader>ta :CtrlP app<cr>
-nmap <leader>tp :CtrlP spec<cr>
+"let g:ctrlp_working_path_mode = 0
+"nmap <leader>t :CtrlP<cr>
+"nmap <leader>tm :CtrlP app/models<cr>
+"nmap <leader>tc :CtrlP app/controllers<cr>
+"nmap <leader>ts :CtrlP app/services<cr>
+"nmap <leader>tn :CtrlP app/connectors<cr>
+"nmap <leader>tv :CtrlP app/views<cr>
+"nmap <leader>ta :CtrlP app<cr>
+"nmap <leader>tp :CtrlP spec<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " telescope
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>t <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
@@ -110,20 +110,12 @@ let g:airline_section_y = '' " hide
 au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
-""""""""""""""""""""""
-" Snippets
-""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="<c-e>"
-
 """""""""""""""""""""""
 " Nerdtree
 """""""""""""""""""""""
 " open at launch
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " close tree if only remaining tab
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif

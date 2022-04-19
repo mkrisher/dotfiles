@@ -19,9 +19,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-scripts/Align'
 Plug 'keith/rspec.vim'
-Plug 'SirVer/ultisnips'
 Plug 'vim-syntastic/syntastic'
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'mkrisher/nord-vim'
 Plug 'troydm/zoomwintab.vim'
 Plug 'dewyze/vim-ruby-block-helpers'
@@ -30,6 +29,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'BurntSushi/ripgrep'
 Plug 'nvim-treesitter/nvim-treesitter'
+" Plug 'SirVer/ultisnips'
 
 call plug#end()
 filetype plugin indent on
