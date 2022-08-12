@@ -39,7 +39,7 @@ au BufRead,BufNewFile *.md setlocal textwidth=80
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Find files using Telescope command-line sugar.
 nnoremap <leader>f <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
@@ -52,8 +52,6 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " short cuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Insert a hash rocket with <c-l>
-imap <c-l> <space>=><space>
 " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
 " Show netrw explore
@@ -121,7 +119,7 @@ autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Show hide NERDTree
-nmap <silent> <leader>nt :NERDTreeToggle<CR>
+nmap <silent> <leader>n :NERDTreeToggle<CR>
 
 " open tree at current file
 nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
@@ -160,4 +158,15 @@ iabbrev teh the
 iabbrev destory destroy
 iabbrev <expr> ddd strftime('%c')
 iabbrev rdsc describe "" do<CR>end<CR>
+iabbrev tomdoc "# Public: Duplicate some text an arbitrary number of times.<CR> #<CR> # text  - The String to be duplicated.<CR> # count - The Integer number of times to duplicate the text.<CR> #<CR> # Examples<CR> #<CR> #   multiplex('Tom', 4)<CR> #   # => 'TomTomTomTom'<CR> #<CR> # Returns the duplicated String.<CR>"
 
+""""""""""""""""""""
+" ale
+""""""""""""""""""""
+au FileType ruby set tw=80 ts=2
+let g:ale_linters = {'ruby': ['standardrb']}
+let g:ale_fixers = {'ruby': ['standardrb']}
+let g:ale_sign_error = 'EE'
+let g:ale_sign_warning = 'WW'
+let g:airline#extensions#ale#enabled = 1
+set formatoptions-=t " don't wrap

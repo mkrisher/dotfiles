@@ -26,3 +26,6 @@ nnoremap <Leader>ln :call NumberToggle()<cr>
 " format JSON
 com! FormatJSON %!python -m json.tool
 
+" Ripgrep
+command! -nargs=+ -complete=file Rg :call ripgrep#search(<q-args>)
+
