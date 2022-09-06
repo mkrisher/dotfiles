@@ -21,11 +21,6 @@ task :install do
 
   ######################################## TMUX
   `echo "tmux files"`
-  `git clone https://github.com/jdxcode/tmux-spotify-info.git ~/.tmux/plugins/tmux-spotify-info`
-  `cp ~/.tmux/plugins/tmux-spotify-info/tmux-spotify-info /usr/local/bin`
-  `cd /usr/local/bin`
-  `chmod 755 tmux-spotify-info`
-  `cd -`
   `ln -s "$PWD/tmux" "$HOME/.tmux"`
   `ln -s "$PWD/tmux/tmux.conf" "$HOME/.tmux.conf"`
 
