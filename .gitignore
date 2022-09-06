@@ -5,6 +5,7 @@ config/nvim/.netrwhist
 config/configstore/
 config/nvim/plugins/node_modules/
 config/raycast
+config/coc/suggest.txt
 node_modules
 sbt
 tmux/plugins/*
