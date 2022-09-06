@@ -22,3 +22,6 @@
 	ignoreSubmodules = all
 [init]
 	defaultBranch = main
+[pager]
+	branch = false
+	stash = false
