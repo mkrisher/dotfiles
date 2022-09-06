@@ -1,0 +1,12 @@
+# /Users/mkrisher/.config/tmuxinator/mk.yml
+
+name: mk
+root: ~/code/mikekrisher
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - nvim
+        - git st
+  - server: bers
