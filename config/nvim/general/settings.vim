@@ -56,7 +56,7 @@ endif
 
 set spelllang=en_us
 
-set colorcolumn=80                " show vertical line at 80 column
+set colorcolumn=100                " show vertical line at 80 column
 
 "folding settings
 set foldmethod=indent   "fold based on indent
