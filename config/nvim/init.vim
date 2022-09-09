@@ -9,3 +9,10 @@ source $HOME/dotfiles/config/nvim/general/settings.vim
 source $HOME/dotfiles/config/nvim/general/mappings.vim
 source $HOME/dotfiles/config/nvim/general/functions.vim
 
+lua <<EOF
+  require('lualine').setup {
+    options = {
+      theme = 'nord'
+    }
+  }
+EOF
