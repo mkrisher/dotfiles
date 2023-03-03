@@ -35,9 +35,10 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+" aesthetic
+Plug 'stevearc/dressing.nvim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'nvim-lualine/lualine.nvim'
-" If you want to have icons in your statusline choose one of these
 Plug 'kyazdani42/nvim-web-devicons'
 
 " trial
