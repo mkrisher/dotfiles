@@ -5,7 +5,6 @@ filetype off
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/Align'
 
@@ -33,13 +32,28 @@ Plug 'kyoh86/vim-ripgrep'
 " telescope
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'jremmen/vim-ripgrep'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " aesthetic
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'stevearc/dressing.nvim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/todo-comments.nvim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'jlanzarotta/bufexplorer'
+
+" Ruby
+Plug 'tpope/vim-rails'
+Plug 'keith/rspec.vim'
+Plug 'dewyze/vim-ruby-block-helpers'
+Plug 'vim-syntastic/syntastic'
+
+" LSP
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " trial
 Plug 'tpope/vim-unimpaired'

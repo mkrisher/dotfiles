@@ -157,16 +157,3 @@ nnoremap <Leader>c :call clearmatches()<CR>
 iabbrev teh the
 iabbrev destory destroy
 iabbrev <expr> ddd strftime('%c')
-iabbrev rdsc describe "" do<CR>end<CR>
-iabbrev tomdoc "# Public: Duplicate some text an arbitrary number of times.<CR> #<CR> # text  - The String to be duplicated.<CR> # count - The Integer number of times to duplicate the text.<CR> #<CR> # Examples<CR> #<CR> #   multiplex('Tom', 4)<CR> #   # => 'TomTomTomTom'<CR> #<CR> # Returns the duplicated String.<CR>"
-
-""""""""""""""""""""
-" ale
-""""""""""""""""""""
-au FileType ruby set tw=80 ts=2
-let g:ale_linters = {'ruby': ['standardrb']}
-let g:ale_fixers = {'ruby': ['standardrb']}
-let g:ale_sign_error = 'EE'
-let g:ale_sign_warning = 'WW'
-let g:airline#extensions#ale#enabled = 1
-set formatoptions-=t " don't wrap
