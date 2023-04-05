@@ -1,3 +1,6 @@
+[user]
+	email = michael@bluelava.io
+	name = Mike Krisher
 [core]
   editor = nvim
 	excludesfile = /Users/mikekrisher/.config/git/ignore
@@ -15,9 +18,6 @@
   pop = stash pop
   save = stash save·
   edit = !$EDITOR $(git status --short | awk '$1 ~ /^M|A|U/ {print $2}' )
-[user]
-	name = Mike Krisher
-	email = mike@mikekrisher.com
 [diff]
 	ignoreSubmodules = all
 [init]
