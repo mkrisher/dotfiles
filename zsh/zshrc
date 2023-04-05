@@ -1,5 +1,7 @@
 # bash compatible
- export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$PATH
+
+export EDITOR=nvim
 
 # Adds sbin for homebrew
 export PATH="/opt/homebrew/bin:/usr/local/sbin:$PATH"
@@ -24,6 +26,7 @@ ZSH_THEME="apple"
 plugins=(git ruby zsh-autosuggestions)
 
 source /Users/mkrisher/code/dotfiles/zsh/oh-my-zsh/oh-my-zsh.sh
+source "$HOME/.cargo/env" # rust package manager
 
 # Preferred Python
 export PYENV_ROOT="$HOME/.pyenv"
