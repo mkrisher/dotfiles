@@ -9,9 +9,9 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/Align'
 
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'mkrisher/nord-vim'
+Plug 'shaunsingh/nord.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 Plug 'jlanzarotta/bufexplorer'
 
@@ -50,7 +50,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " lsp
 Plug 'neovim/nvim-lspconfig'
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " ale
 Plug 'dense-analysis/ale'
