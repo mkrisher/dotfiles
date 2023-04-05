@@ -1,7 +1,7 @@
-# /Users/mikekrisher/.config/tmuxinator/manager.yml
+# /Users/mikekrisher/.config/tmuxinator/scf.yml
 
-name: manager
-root: /Users/mikekrisher/code/ProgramManager
+name: scf
+root: ~/code/scf
 
 # Optional tmux socket
 # socket_name: foo
@@ -36,7 +36,7 @@ root: /Users/mikekrisher/code/ProgramManager
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-startup_window: editor
+# startup_window: editor
 
 # Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
 # startup_pane: 1
@@ -53,7 +53,3 @@ windows:
       panes:
         - nvim
         - clear
-  - server:
-      layout: main-horizontal
-      panes:
-        -clear
