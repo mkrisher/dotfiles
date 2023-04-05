@@ -14,3 +14,4 @@ config/nvim/plugins/*.log
 *.log
 fonts
 tmux-spotify-info
+git/gitconfig.symlink
