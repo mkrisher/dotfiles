@@ -6,6 +6,7 @@ config/configstore/
 config/nvim/plugins/node_modules/
 config/raycast
 config/coc/suggest.txt
+config/gh/hosts.yml
 node_modules
 sbt
 tmux/plugins/*
