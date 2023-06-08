@@ -60,8 +60,8 @@ task :install do
   `echo "neovim files"`
   # install astronvim into config/nvim directory, not copied from dotfiles
   `git clone --depth 1 https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim`
-  # TODO: persist astronvim overrides somewhere the .config directory other than nvim dir, and copy into place
-  # `ln -s "$PWD/config/nvim" "$HOME/.config/nvim"`
+  # put astronvim overrides in place
+  `ln -s "$PWD/config/nvim.custom/lua/user" "$HOME/.config/nvim/lua/user"`
 
   ######################################## messages
   `echo "DONE!"`
