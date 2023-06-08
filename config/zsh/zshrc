@@ -14,18 +14,18 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-# Path to oh-my-zsh installation
-export ZSH="$HOME/.config/oh-my-zsh"
+# Path to oh-my-zsh installation, assumes dotfiles in code directory rather than user dir
+export ZSH="$HOME/code/dotfiles/zsh/oh-my-zsh"
 
 # Set name of the theme to load
 ZSH_THEME="apple"
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.config/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.config/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git ruby zsh-autosuggestions)
 
-source "$HOME/oh-my-zsh/oh-my-zsh.sh"
+source /Users/mkrisher/code/dotfiles/zsh/oh-my-zsh/oh-my-zsh.sh
 source "$HOME/.cargo/env" # rust package manager
 
 # Preferred Python
@@ -37,8 +37,8 @@ eval "$(pyenv init --path)"
 eval "$(rbenv init -)"
 
 # load environment specific files
-source ~/.config/.env 
-source ~/.config/.aliases
+source ~/.env 
+source ~/.aliases
 
 # mimic os x keys for start and end of line
 # which don't conflict with tmux keys, requires preferences in iterm
@@ -46,3 +46,7 @@ bindkey "[D" backward-word
 bindkey "[C" forward-word
 bindkey "^[a" beginning-of-line
 bindkey "^[e" end-of-line
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

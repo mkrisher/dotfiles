@@ -1,9 +1,0 @@
-#alias ossh='ssh'
-
-#function ssh() {
-#  PORT=`jot -r 1 62000 65000`
-#  echo "Connecting... will attempt to reattach session"
-#  #this mess of echo stuff is so we can fix ssh agent forwarding
-#  autossh -M $PORT -t -o "ServerAliveInterval 15" -o "ServerAliveCountMax 2" $1 '/bin/echo export SSH_AUTH_SOCK=$SSH_AUTH_SOCK > ~/.sshenv; tmux attach -d || bash'
-#}
-
