@@ -32,7 +32,7 @@ task :install do
   ######################################## oh-my-zsh
   `echo "oh-my-zsh files"`
   `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-  `sh -c "$(git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh/custom}/plugins/zsh-autosuggestions)"`
+  `sh -c "$(git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/oh-my-zsh/custom/plugins/zsh-autosuggestions)"`
   `ln -s "$PWD/config/zsh/oh_my_zsh/custom/aliases.zsh" "$HOME/.config/oh-my-zsh/custom/aliases.zsh"`
 
   ######################################## ZSH
