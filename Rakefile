@@ -84,9 +84,9 @@ task :dependencies do
   `echo "installing fonts"`
   dir = `ls $HOME/.config/fonts`
   if dir.empty?
-    `git clone https://github.com/powerline/fonts.git`
-    `cd fonts`
-    `./install.sh`
+    `git clone https://github.com/powerline/fonts.git $HOME/.config/fonts`
+    `cd $HOME/.config/fonts`
+    `bin/shell install.sh`
     `cd -`
   else
     `echo "fonts already installed"`
@@ -175,7 +175,7 @@ task :dependencies do
 
   ######################################## yarn
   `echo "install yarn (for node)"`
-  yarn = `npm list -g | grep yarn`
+  yarn = `ls /usr/local/bin/yarn`
   if yarn.empty?
     `npm install -g yarn`
   else
