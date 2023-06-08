@@ -18,10 +18,10 @@ desc "symlink dotfiles into system-standard positions (inside .config)"
 task :install do
   ######################################## file structure
   `echo "PARA files"`
-  `sh -c mkdir $HOME/projects`
-  `sh -c mkdir $HOME/areas`
-  `sh -c mkdir $HOME/resources`
-  `sh -c mkdir $HOME/archive`
+  `mkdir $HOME/projects`
+  `mkdir $HOME/areas`
+  `mkdir $HOME/resources`
+  `mkdir $HOME/archive`
 
   ######################################## ENV files
   `echo "alias and env files"`
@@ -33,21 +33,21 @@ task :install do
   `echo "oh-my-zsh files"`
   `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
   `sh -c "$(git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh/custom}/plugins/zsh-autosuggestions)"`
-  `ln -s "$PWD/zsh/oh_my_zsh/custom/aliases.zsh" "$HOME/.config/oh-my-zsh/custom/aliases.zsh"`
+  `ln -s "$PWD/config/zsh/oh_my_zsh/custom/aliases.zsh" "$HOME/.config/oh-my-zsh/custom/aliases.zsh"`
 
   ######################################## ZSH
   `echo "zsh files"`
-  `ln -s "$PWD/zsh/zshrc" "$HOME/.config/.zshrc"` # copy from dotfiles into .config directory
+  `ln -s "$PWD/config/zsh/zshrc" "$HOME/.config/.zshrc"` # copy from dotfiles into .config directory
   `ln -s "$HOME/.config/.zshrc" "$HOME/.zshrc"` # zsh expects the config file to live at HOME vs .config
 
   ######################################## TMUX
   `echo "tmux files"`
-  `ln -s "$PWD/tmux/tmux.conf" "$HOME/.config/.tmux.conf"` # copy from dotfiles into .config directory
-  `ln -s "$HOME/.config/tmux.conf" "$HOME/.tmux.conf"` # tmux expects the config file to live at HOME vs .config
+  `ln -s "$PWD/config/tmux/tmux.conf" "$HOME/.config/.tmux.conf"` # copy from dotfiles into .config directory
+  `ln -s "$HOME/.config/.tmux.conf" "$HOME/.tmux.conf"` # tmux expects the config file to live at HOME vs .config
 
   ######################################## Git
   `echo "git files"`
-  `ln -s "$PWD/git/gitconfig.symlink" "$HOME/.config/.gitconfig"`
+  `ln -s "$PWD/config/git/gitconfig.symlink" "$HOME/.config/.gitconfig"`
   `ln -s "$HOME/.config/.gitconfig" "$HOME/.gitconfig"`
 
   ######################################## Ruby
@@ -58,15 +58,13 @@ task :install do
 
   ######################################## Neovim
   `echo "neovim files"`
-  `ln -s "$PWD/config/nvim" "$HOME/.config/nvim"`
-  astro = `ls $HOME/.config/nvim/lua/astronvim` # previous nvim configs may not have included astronvim
-  if astro.empty?
-    `git clone --depth 1 https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim`
-  end
+  # install astronvim into config/nvim directory, not copied from dotfiles
+  `git clone --depth 1 https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim`
+  # TODO: persist astronvim overrides somewhere the .config directory other than nvim dir, and copy into place
+  # `ln -s "$PWD/config/nvim" "$HOME/.config/nvim"`
 
   ######################################## messages
   `echo "DONE!"`
-  `echo "- to install tmux plugins, open session and press prefix + I"`
 end
 
 desc "install system dependencies required by dotfiles"
