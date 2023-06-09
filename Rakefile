@@ -61,13 +61,13 @@ task :install do
   # install astronvim into config/nvim directory, not copied from dotfiles
   `git clone --depth 1 https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim`
   # put astronvim overrides in place
-  # TODO: only do this once to prevent self referencing link
   user = `ls $HOME/.config/nvim/lua/user`
   if user.empty?
     `ln -s "$PWD/config/nvim.custom/lua/user" "$HOME/.config/nvim/lua/user"`
   end
 
   ######################################## messages
+  `echo press leader + I inside first tmux session to install plugins using tpm`
   `echo "DONE!"`
 end
 
@@ -119,10 +119,12 @@ task :dependencies do
   tmux = `which tmux`
   if tmux.empty?
     `brew install tmux`
-    `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
-    # TODO: figure out how to activate tmux plugins (prefix + I)
   else
     `echo "tmux already installed"`
+  end
+  tpm = `ls $HOME/.tmux/plugins/tpm`
+  if tpm.empty?
+    `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
   end
 
   ######################################## Git
