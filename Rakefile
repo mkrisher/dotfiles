@@ -32,7 +32,7 @@ task :install do
   ######################################## oh-my-zsh
   `echo "oh-my-zsh files"`
   `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-  `sh -c "$(git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/oh-my-zsh/custom/plugins/zsh-autosuggestions)"`
+  `sh -c "$(git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/oh-my-zsh/custom/plugins/zsh-autosuggestions)"`
   `ln -s "$PWD/config/zsh/oh_my_zsh/custom/aliases.zsh" "$HOME/.config/oh-my-zsh/custom/aliases.zsh"`
 
   ######################################## ZSH
@@ -61,7 +61,11 @@ task :install do
   # install astronvim into config/nvim directory, not copied from dotfiles
   `git clone --depth 1 https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim`
   # put astronvim overrides in place
-  `ln -s "$PWD/config/nvim.custom/lua/user" "$HOME/.config/nvim/lua/user"`
+  # TODO: only do this once to prevent self referencing link
+  user = `ls $HOME/.config/nvim/lua/user`
+  if user.empty?
+    `ln -s "$PWD/config/nvim.custom/lua/user" "$HOME/.config/nvim/lua/user"`
+  end
 
   ######################################## messages
   `echo "DONE!"`
