@@ -49,7 +49,11 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-      --"ruby-lsp"
+      "ruby-ls",
+      "standardrb",
+      "jsonls",
+      "eslint",
+      "tsserver"
     },
   },
 

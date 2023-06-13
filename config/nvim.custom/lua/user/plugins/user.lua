@@ -11,7 +11,7 @@ return {
   -- },
   {
     "EdenEast/nightfox.nvim",
-    as = "nightfox",
+    -- as = "nightfox",
     config = function() 
       require("nightfox").setup()
     end,
@@ -25,19 +25,11 @@ return {
       vim.g.startuptime_tries = 10
     end,
   },
-  {
-    "tpope/vim-rails",
-    -- lazy-load on a command
-    cmd = "Rails",
-    -- init is called during startup. Configuration for vim plugins typically should be set in an init function
-    init = function()
-      vim.g.startuptime_tries = 10
-    end,
-  },
-  "tpope/vim-abolish",
-  "tpope/vim-surround",
-  "tpope/vim-unimpaired",
-  "vim-scripts/Align",
-  "folke/todo-comments.nvim",
-  "keith/rspec.vim",
+  {"tpope/vim-rails", ft = "ruby"},
+  {"tpope/vim-abolish", lazy=false},
+  {"tpope/vim-surround", lazy=false},
+  {"tpope/vim-unimpaired", lazy=false},
+  { "vim-scripts/Align", lazy = false},
+  {"folke/todo-comments.nvim", lazy=false},
+  {"keith/rspec.vim", ft="ruby"}
 }
