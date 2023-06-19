@@ -14,15 +14,14 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-# Path to oh-my-zsh installation
-export ZSH="$HOME/.config/oh-my-zsh"
+export ZSH="$HOME/oh-my-zsh"
 
 # Set name of the theme to load
 ZSH_THEME="apple"
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.config/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.config/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git ruby zsh-autosuggestions)
 
 source "$HOME/oh-my-zsh/oh-my-zsh.sh"

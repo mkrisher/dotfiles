@@ -1,97 +1,75 @@
-require 'rake'
+require "rake"
 
-desc "symlink dotfiles into system-standard positions"
+# This installs and configs the following:
+#
+# - a file structure following the PARA method in the home directory
+# - an .aliases and .env file for global aliases and environment variables
+# - homebrew
+# - developer fonts
+# - ZSH and oh-my-zsh
+# - tmux
+# - git
+# - Ruby version 3.x - via rbenv
+# - Python version 3.x - via pyenv
+# - Node (and yarn)
+# - Neovim
+
+desc "symlink dotfiles into system-standard positions (inside .config)"
 task :install do
-    ######################################## Bash
-  `echo "bash files"`
-  `ln -s "$PWD/bash" "$HOME/.bash"`
-  `ln -s "$PWD/bash/bash_profile" "$HOME/.bash_profile"`
-  `ln -s "$HOME/.bash_profile" "$HOME/.bashrc"`
-  `ln -s "$PWD/bash/bash_prompt" "$HOME/.bash_prompt"`
+  ######################################## file structure
+  `echo "PARA files"`
+  `mkdir $HOME/projects`
+  `mkdir $HOME/areas`
+  `mkdir $HOME/resources`
+  `mkdir $HOME/archive`
+
+  ######################################## ENV files
+  `echo "alias and env files"`
+  # TODO: define some shared entries in dotfiles repo
+  `touch $HOME/.config/.aliases`
+  `touch $HOME/.config/.env`
 
   ######################################## oh-my-zsh
   `echo "oh-my-zsh files"`
   `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-  `sh -c "$(git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions)"`
-  `ln -s "$PWD/zsh/oh_my_zsh/custom/aliases.zsh" "$HOME/.oh-my-zsh/custom/aliases.zsh"`
+  `sh -c "$(git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/oh-my-zsh/custom/plugins/zsh-autosuggestions)"`
+  `ln -s "$PWD/config/zsh/oh_my_zsh/custom/aliases.zsh" "$HOME/.config/oh-my-zsh/custom/aliases.zsh"`
 
   ######################################## ZSH
   `echo "zsh files"`
-  `ln -s "$PWD/zsh/zshrc" "$HOME/.zshrc"`
+  `ln -s "$PWD/config/zsh/zshrc" "$HOME/.config/.zshrc"` # copy from dotfiles into .config directory
+  `ln -s "$HOME/.config/.zshrc" "$HOME/.zshrc"` # zsh expects the config file to live at HOME vs .config
 
   ######################################## TMUX
   `echo "tmux files"`
-  `ln -s "$PWD/tmux" "$HOME/.tmux"`
-  `ln -s "$PWD/tmux/tmux.conf" "$HOME/.tmux.conf"`
-
-  ######################################## VIM
-  `echo "vim files"`
-  `ln -s "$PWD/vim" "$HOME/.vim"`
-  `ln -s "$PWD/vim/vimrc" "$HOME/.vimrc"`
+  `ln -s "$PWD/config/tmux/tmux.conf" "$HOME/.config/.tmux.conf"` # copy from dotfiles into .config directory
+  `ln -s "$HOME/.config/.tmux.conf" "$HOME/.tmux.conf"` # tmux expects the config file to live at HOME vs .config
 
   ######################################## Git
   `echo "git files"`
-  `ln -s "$PWD/git/gitconfig.symlink" "$HOME/.gitconfig"`
+  `ln -s "$PWD/config/git/gitconfig.symlink" "$HOME/.config/.gitconfig"`
+  `ln -s "$HOME/.config/.gitconfig" "$HOME/.gitconfig"`
 
   ######################################## Ruby
   `echo "ruby files"`
   `gem install bundler`
   `gem install tmuxinator`
+  `gem install neovim`
 
   ######################################## Neovim
   `echo "neovim files"`
-  `ln -s "$PWD/config" "$HOME/.config"`
-  # vim-plug
-  `sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'`
-  # node client for neovim
-  `npm install -g @chemzqm/neovim`
-  `gem install neovim`
-  `gem install solargraph`
-  `brew install the_silver_searcher`
-
-  ######################################## ENV files
-  `echo "env files"`
-  `touch $HOME/.aliases`
-  `touch $HOME/.env`
-  `echo "local files for aliases and environment variables created in user directory"`
+  # install astronvim into config/nvim directory, not copied from dotfiles
+  `git clone --depth 1 https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim`
+  # put astronvim overrides in place
+  user = `ls $HOME/.config/nvim/lua/user`
+  if user.empty?
+    `ln -s "$PWD/config/nvim.custom/lua/user" "$HOME/.config/nvim/lua/user"`
+  end
 
   ######################################## messages
+  `echo press leader + I inside first tmux session to install plugins using tpm`
   `echo "DONE!"`
-  `echo "- to install tmux plugins, open session and press prefix + I"`
-  `echo "- to install vim plugins, open session and run :PlugInstall"`
-  `echo "- Nord theme is avaibale for iterm: https://github.com/arcticicestudio/nord-iterm2"`
 end
-
-desc "remove symlinked dotfiles"
-task :uninstall do
-  `rm "$HOME/.bash"`
-  `rm "$HOME/.bash_profile"`
-  `rm "$HOME/.bashrc"`
-  `rm "$HOME/.bash_prompt"`
-  `rm "$HOME/.zshrc"`
-  `rm "$HOME/.tmux"`
-  `rm "$HOME/.tmux.conf"`
-  `rm "$HOME/.vim"`
-  `rm "$HOME/.vimrc"`
-  `rm "$HOME/.gitconfig"`
-  `rm "$HOME/.sbt"`
-  `rm -Rf "$HOME/.config"`
-  `rm -Rf "$HOME/.oh-my-zsh"`
-
-  # uninstall
-  # yarn,
-  # node,
-  # python (via pyenv),
-  # ruby (via rbenv),
-  # tmux,
-  #  oh-my-zsh
-  `pip3 uninstall websocket-client sexpdata neovim`
-  `npm uninstall @chemzqm/neovim`
-  `gem uninstall neovim`
-  `gem uninstall solargraph`
-end
-
-task :default => 'install'
 
 desc "install system dependencies required by dotfiles"
 task :dependencies do
@@ -106,10 +84,10 @@ task :dependencies do
 
   ####################################### Fonts
   `echo "installing fonts"`
-  dir = `ls | grep fonts`
+  dir = `ls $HOME/.config/fonts`
   if dir.empty?
-    `git clone https://github.com/powerline/fonts.git`
-    `cd fonts`
+    `git clone https://github.com/powerline/fonts.git $HOME/.config/fonts`
+    `cd $HOME/.config/fonts`
     `./install.sh`
     `cd -`
   else
@@ -127,8 +105,9 @@ task :dependencies do
 
   ######################################## oh-my-zsh
   `echo "oh-my-zsh files"`
-  oh_my_zsh = `ls ~/.oh-my-zsh`
+  oh_my_zsh = `ls $HOME/.config/oh-my-zsh` # can this use ~/.config
   if oh_my_zsh.empty?
+    `sh -c ZSH_CUSTOM=$HOME/.config/oh-my-zsh/custom`
     `sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
     `sh -c "exit"`
   else
@@ -140,10 +119,12 @@ task :dependencies do
   tmux = `which tmux`
   if tmux.empty?
     `brew install tmux`
-    `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
-    # TODO: figure out how to activate tmux plugins (prefix + I)
   else
     `echo "tmux already installed"`
+  end
+  tpm = `ls $HOME/.tmux/plugins/tpm`
+  if tpm.empty?
+    `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
   end
 
   ######################################## Git
@@ -155,22 +136,32 @@ task :dependencies do
     `echo "git already installed"`
   end
 
+  ######################################## GitHub CLI
+  `echo "installing GitHub CLI"`
+  gh = `ls $HOME/.config/gh` # assumes gh auth has completed
+  if gh.empty?
+    `brew install gh`
+  else
+    `echo "github cli already installed"`
+  end
+
   ######################################## Ruby
-  `echo "installing Ruby 2.7.2 via rbenv"`
+  `echo "installing Ruby versions via rbenv"`
   rbenv = `which rbenv`
   if rbenv.empty?
     `brew install rbenv`
-    `rbenv install 2.7.2`
+    `rbenv install 3.0.3`
+    `rbenv install 3.1.2`
   else
     `echo "rbenv already installed"`
   end
 
   ######################################## Python
-  `echo "installing Python 3.9.0 via pyenv"`
+  `echo "installing Python 3.8.3 via pyenv"`
   pyenv = `which pyenv`
   if pyenv.empty?
     `brew install pyenv`
-    `pyenv install 3.9.0`
+    `pyenv install 3.8.3`
     `pip3 install --upgrade pip`
     `pip3 install --user websocket-client sexpdata neovim`
   else
@@ -188,7 +179,7 @@ task :dependencies do
 
   ######################################## yarn
   `echo "install yarn (for node)"`
-  yarn = `npm list -g | grep yarn`
+  yarn = `ls /usr/local/bin/yarn`
   if yarn.empty?
     `npm install -g yarn`
   else
@@ -207,33 +198,18 @@ task :dependencies do
   ######################################## messages
   `echo "DONE!"`
   `echo "- to install tmux plugins, open session and press prefix + I"`
-  `echo "- Nord theme is avaibale for iterm: https://github.com/arcticicestudio/nord-iterm2"`
   `echo "- to install dotfiles run: rake install"`
 end
 
 desc "remove symlinked dotfiles"
 task :uninstall do
-  `rm "$HOME/.bash"`
-  `rm "$HOME/.bash_profile"`
-  `rm "$HOME/.bashrc"`
-  `rm "$HOME/.bash_prompt"`
-  `rm "$HOME/.zshrc"`
-  `rm "$HOME/.tmux"`
-  `rm "$HOME/.tmux.conf"`
-  `rm "$HOME/.vim"`
-  `rm "$HOME/.vimrc"`
-  `rm "$HOME/.gitconfig"`
-  `rm "$HOME/.sbt"`
+  # TODO: make sure everything goes into the .config directory
   `rm -Rf "$HOME/.config"`
-  `rm -Rf "$HOME/.oh-my-zsh"`
-  `rm "$HOME/.aliases"`
-  `rm "$HOME/.env"`
 
   `pip3 uninstall websocket-client sexpdata neovim`
-  `npm uninstall @chemzqm/neovim`
   `gem uninstall neovim`
-  `gem uninstall solargraph`
+  `gem uninstall tmuxinator`
+  `gem uninstall bundler`
 end
 
-task :default => 'install'
-
+task default: "install"

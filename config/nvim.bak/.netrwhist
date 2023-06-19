@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/Users/mikekrisher/code/BlueLavaPortal/app/serializers'
+let g:netrw_dirhist_4='/Users/mikekrisher/code/BlueLavaPortal/app/helpers'
+let g:netrw_dirhist_3='/Users/mikekrisher/code/BlueLavaPortal/app'
+let g:netrw_dirhist_2='/Users/mikekrisher/code/BlueLavaPortal/app/controllers'
+let g:netrw_dirhist_1='/Users/mikekrisher/code/BlueLavaPortal/app/assets/stylesheets'

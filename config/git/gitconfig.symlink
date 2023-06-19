@@ -1,7 +1,6 @@
 [user]
 	email = michael@bluelava.io
 	name = Mike Krisher
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINoJ9ZB6xhtngfA0CsL6iYX6hFuSTXZQkAmsXBgNFyMv
 [core]
   editor = nvim
 	excludesfile = /Users/mikekrisher/.config/git/ignore
@@ -26,9 +25,3 @@
 [pager]
 	branch = false
 	stash = false
-[gpg]
-  format = ssh
-[gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-[commit]
-  gpgsign = true
