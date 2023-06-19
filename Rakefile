@@ -88,7 +88,7 @@ task :dependencies do
   if dir.empty?
     `git clone https://github.com/powerline/fonts.git $HOME/.config/fonts`
     `cd $HOME/.config/fonts`
-    `bin/shell install.sh`
+    `./install.sh`
     `cd -`
   else
     `echo "fonts already installed"`
@@ -138,7 +138,7 @@ task :dependencies do
 
   ######################################## GitHub CLI
   `echo "installing GitHub CLI"`
-  gh = `ls $HOME/.config/gh`
+  gh = `ls $HOME/.config/gh` # assumes gh auth has completed
   if gh.empty?
     `brew install gh`
   else
