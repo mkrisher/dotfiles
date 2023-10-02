@@ -1,5 +1,5 @@
 [user]
-	email = michael@bluelava.io
+	email = mike@mikekrisher.com
 	name = Mike Krisher
 [core]
   editor = nvim
@@ -25,3 +25,5 @@
 [pager]
 	branch = false
 	stash = false
+[pull]
+	rebase = true
