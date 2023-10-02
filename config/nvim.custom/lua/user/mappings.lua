@@ -11,7 +11,10 @@ return {
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(bufnr) end)
+        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
+          require("astronvim.utils.buffer").close(
+            bufnr)
+        end)
       end,
       desc = "Pick to close",
     },
@@ -32,7 +35,13 @@ return {
     ["<leader>k"] = { "<cmd>m-2<cr>==", desc = "move line up" },
 
     -- clear search highlights
-    ["<leader> "] = { "<cmd>noh<cr>", desc = "remove search highlights" }
+    ["<leader> "] = { "<cmd>noh<cr>", desc = "remove search highlights" },
+
+    -- use Twilight plugin
+    ["<leader>tw"] = { "<cmd>Twilight<cr>", desc = "toggles twilight plugin" },
+
+    -- use ZenMode plugin
+    ["<leader>z"] = { "<cmd>ZenMode<cr>", desc = "toggles zenmode plugin" },
   },
   t = {
     -- setting a mapping to false will disable it

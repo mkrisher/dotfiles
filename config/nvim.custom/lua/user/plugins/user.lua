@@ -25,6 +25,30 @@ return {
       vim.g.startuptime_tries = 10
     end,
   },
+  {
+    "folke/twilight.nvim",
+    lazy = false,
+    enabled = true,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
+  {
+    "nvim-zh/colorful-winsep.nvim",
+    config = true,
+    event = { "WinNew" },
+  },
   { "tpope/vim-rails",          ft = "ruby" },
   { "tpope/vim-abolish",        lazy = false },
   { "tpope/vim-surround",       lazy = false },
