@@ -23,7 +23,13 @@ ZSH_THEME="apple"
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.config/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.config/.oh-my-zsh/custom/plugins/
-plugins=(git ruby zsh-autosuggestions)
+plugins=(
+  git
+  ruby 
+  zsh-completions
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
 
 source "$HOME/oh-my-zsh/oh-my-zsh.sh"
 source "$HOME/.cargo/env" # rust package manager
