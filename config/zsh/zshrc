@@ -56,3 +56,11 @@ if [ -f '/Users/mkrisher/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mkrish
 if [ -f '/Users/mkrisher/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mkrisher/google-cloud-sdk/completion.zsh.inc'; fi
 
 eval "$(starship init zsh)"
+
+# Created by `pipx` on 2025-03-07 21:18:47
+export PATH="$PATH:/Users/mkrisher/.local/bin"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
+# For compilers to find llvm you may need to set:
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"

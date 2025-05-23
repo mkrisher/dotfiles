@@ -1,8 +1,7 @@
-mkrisher's dot-files
-====================
+# mkrisher's dot-files
 
-My dotfiles including setup for Ruby and Python environments. I use tmux and 
-Neovim. ZSH for a shell. Everything installs via Rake commands.
+My dotfiles including setup for Ruby and Python environments. I use tmux and
+Neovim. Bash for a shell. Everything installs via Rake commands.
 
 ```
 git clone https://github.com/mkrisher/dotfiles.git
@@ -14,3 +13,20 @@ rake dependencies # to install system dependencies like homebrew
 rake install
 ```
 
+### high level
+
+- Neovim with LazyVim
+
+- Brew for Mac OS
+
+- Bash
+
+- Tmux
+
+- Warp terminal
+
+- Rust, Ruby, Python, Typescript
+
+- Starship
+
+### config
