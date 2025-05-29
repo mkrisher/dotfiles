@@ -1,20 +1,19 @@
-require "rake"
+require 'rake'
 
 # This installs and configs the following:
 #
 # - a file structure following the PARA method in the home directory
 # - an .aliases and .env file for global aliases and environment variables
-# - homebrew
+# - homebrew and a Brewfile
 # - developer fonts
-# - ZSH and oh-my-zsh
 # - tmux
 # - git
-# - Ruby version 3.x - via rbenv
-# - Python version 3.x - via pyenv
-# - Node (and yarn)
 # - Neovim
+# - LazyVim
+# - Mise
+# - Ruby, Python, Node, Rust versions
 
-desc "symlink dotfiles into system-standard positions (inside .config)"
+desc 'symlink dotfiles into system-standard positions (inside .config)'
 task :install do
   ######################################## file structure
   `echo "PARA files"`
@@ -25,20 +24,12 @@ task :install do
 
   ######################################## ENV files
   `echo "alias and env files"`
-  # TODO: define some shared entries in dotfiles repo
   `touch $HOME/.config/.aliases`
   `touch $HOME/.config/.env`
 
-  ######################################## oh-my-zsh
-  `echo "oh-my-zsh files"`
-  `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-  `sh -c "$(git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/oh-my-zsh/custom/plugins/zsh-autosuggestions)"`
-  `ln -s "$PWD/config/zsh/oh_my_zsh/custom/aliases.zsh" "$HOME/.config/oh-my-zsh/custom/aliases.zsh"`
-
-  ######################################## ZSH
-  `echo "zsh files"`
-  `ln -s "$PWD/config/zsh/zshrc" "$HOME/.config/.zshrc"` # copy from dotfiles into .config directory
-  `ln -s "$HOME/.config/.zshrc" "$HOME/.zshrc"` # zsh expects the config file to live at HOME vs .config
+  ######################################## Brewfile
+  `echo "brewfile"`
+  `ln -s "$PWD/Brewfile" "$HOME/Brewfile"` # copy from dotfiles into home directory
 
   ######################################## TMUX
   `echo "tmux files"`
@@ -50,29 +41,15 @@ task :install do
   `ln -s "$PWD/config/git/gitconfig.symlink" "$HOME/.config/.gitconfig"`
   `ln -s "$HOME/.config/.gitconfig" "$HOME/.gitconfig"`
 
-  ######################################## Ruby
-  `echo "ruby files"`
-  `gem install bundler`
-  `gem install tmuxinator`
-  `gem install neovim`
-
   ######################################## Neovim
   `echo "neovim files"`
-  # install astronvim into config/nvim directory, not copied from dotfiles
-  `git clone --depth 1 https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim`
-  # put astronvim overrides in place
-  user = `ls $HOME/.config/nvim/lua/user`
-  if user.empty?
-    `ln -s "$PWD/config/nvim.custom/lua/user" "$HOME/.config/nvim/lua/user"`
-  end
+  # back up any existing existing nvim config
+  `mv ~/.config/nvim{,.bak}`
+  `ls -s "$PWD/config/nvim" "$HOME/.config/nvim"`
 
-  ######################################## messages
-  `echo press leader + I inside first tmux session to install plugins using tpm`
-  `echo "DONE!"`
-end
+  ######################################## Install dependncies
+  `echo "dependencies"`
 
-desc "install system dependencies required by dotfiles"
-task :dependencies do
   ####################################### Homebrew
   `echo "installing homebrew"`
   brew = `which brew`
@@ -94,26 +71,6 @@ task :dependencies do
     `echo "fonts already installed"`
   end
 
-  ######################################## ZSH
-  `echo "installing zsh"`
-  zsh = `which zsh`
-  if zsh.empty?
-    `brew install zsh`
-  else
-    `echo "zsh already installed"`
-  end
-
-  ######################################## oh-my-zsh
-  `echo "oh-my-zsh files"`
-  oh_my_zsh = `ls $HOME/.config/oh-my-zsh` # can this use ~/.config
-  if oh_my_zsh.empty?
-    `sh -c ZSH_CUSTOM=$HOME/.config/oh-my-zsh/custom`
-    `sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-    `sh -c "exit"`
-  else
-    `echo "oh-my-zsh already installed"`
-  end
-
   ######################################## TMUX
   `echo "installing tmux"`
   tmux = `which tmux`
@@ -123,88 +80,74 @@ task :dependencies do
     `echo "tmux already installed"`
   end
   tpm = `ls $HOME/.tmux/plugins/tpm`
-  if tpm.empty?
-    `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
-  end
+  `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm` if tpm.empty?
 
-  ######################################## Git
-  `echo "installing git"`
-  git = `which git`
-  if git.empty?
-    `brew install git`
-  else
-    `echo "git already installed"`
-  end
+  ######################################## packages
+  `echo "installing packages"`
+  `brew bundle install`
 
-  ######################################## GitHub CLI
-  `echo "installing GitHub CLI"`
-  gh = `ls $HOME/.config/gh` # assumes gh auth has completed
-  if gh.empty?
-    `brew install gh`
-  else
-    `echo "github cli already installed"`
-  end
+  ######################################## languages
+  `echo "installing languages"`
 
   ######################################## Ruby
-  `echo "installing Ruby versions via rbenv"`
-  rbenv = `which rbenv`
-  if rbenv.empty?
-    `brew install rbenv`
-    `rbenv install 3.0.3`
-    `rbenv install 3.1.2`
+  `echo "installing Ruby versions via mise"`
+  mise = `which mise`
+  if mise.empty?
+    `brew install mise`
+    `mise use -g Ruby@3.4.4`
+    `gem install bundler`
+    `gem install tmuxinator`
+    `gem install neovim`
   else
-    `echo "rbenv already installed"`
+    `echo "mise already installed, ruby versions can be installed with: mise exec ruby@3.4.4"`
   end
 
   ######################################## Python
-  `echo "installing Python 3.8.3 via pyenv"`
-  pyenv = `which pyenv`
-  if pyenv.empty?
-    `brew install pyenv`
-    `pyenv install 3.8.3`
+  `echo "installing Python 3 via mise"`
+  mise = `which mise`
+  if mise.empty?
+    `brew install mise`
+    `mise use -g python@3`
     `pip3 install --upgrade pip`
     `pip3 install --user websocket-client sexpdata neovim`
   else
-    `echo "pyenv already installed"`
+    `echo "mise already installed, python versions can be installed with: mise exec python@3"`
   end
 
   ######################################## Node
   `echo "installing node"`
-  node = `which node`
-  if node.empty?
-    `brew install node`
+  mise = `which mise`
+  if mise.empty?
+    `brew install mise`
+    `mise use -g node@22`
   else
-    `echo "node already installed"`
+    `echo "mise already installed, node versions can be installed with: mise exec node@22"`
   end
 
-  ######################################## yarn
-  `echo "install yarn (for node)"`
-  yarn = `ls /usr/local/bin/yarn`
-  if yarn.empty?
-    `npm install -g yarn`
+  ######################################## Rust
+  `echo "installing rust"`
+  mise = `which mise`
+  if mise.empty?
+    `brew install mise`
+    `mise use -g rust`
   else
-    `echo "yarn already installed"`
-  end
-
-  ######################################## Neovim
-  `echo "installing neovim"`
-  nvim = `which nvim`
-  if nvim.empty?
-    `brew install neovim`
-  else
-    `echo "neovim already installed"`
+    `echo "mise already installed, rust can be installed with: mise use -g rust"`
   end
 
   ######################################## messages
+  `echo press leader + I inside first tmux session to install plugins using tpm`
   `echo "DONE!"`
-  `echo "- to install tmux plugins, open session and press prefix + I"`
-  `echo "- to install dotfiles run: rake install"`
 end
 
-desc "remove symlinked dotfiles"
+desc 'remove symlinked dotfiles'
 task :uninstall do
-  # TODO: make sure everything goes into the .config directory
   `rm -Rf "$HOME/.config"`
+  `rm -Rf "$HOME/Brewfile"`
+
+  `rm -Rf $HOME/projects`
+  `rm -Rf $HOME/areas`
+  `rm -Rf $HOME/resources`
+  `rm -Rf $HOME/archive`
 
   `pip3 uninstall websocket-client sexpdata neovim`
   `gem uninstall neovim`
@@ -212,4 +155,4 @@ task :uninstall do
   `gem uninstall bundler`
 end
 
-task default: "install"
+task default: 'install'

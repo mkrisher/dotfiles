@@ -23,14 +23,6 @@ ZSH_THEME="apple"
 
 source "$HOME/.cargo/env" # rust package manager
 
-# Preferred Python
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-
-# Preferred Ruby
-eval "$(rbenv init -)"
-
 # load environment specific files
 source ~/.config/.env 
 source ~/.config/.aliases
@@ -43,8 +35,6 @@ bindkey "^[a" beginning-of-line
 bindkey "^[e" end-of-line
 
 eval "$(zoxide init zsh)"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
 
 # puts tailwind ahead of rbenv shim
 export PATH="/usr/local/bin:$PATH"
@@ -64,3 +54,4 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 # For compilers to find llvm you may need to set:
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+eval "$(mise activate zsh)"
