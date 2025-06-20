@@ -3,15 +3,18 @@ require 'rake'
 # This installs and configs the following:
 #
 # - a file structure following the PARA method in the home directory
-# - an .aliases and .env file for global aliases and environment variables
+# - an .aliases and .env file for global aliases and environment variables local to the machine
 # - homebrew and a Brewfile
 # - developer fonts
-# - tmux
+# - zellij
 # - git
 # - Neovim
 # - LazyVim
 # - Mise
-# - Ruby, Python, Node, Rust versions
+# - Ruby, Python, Node, Rust versions (via Mise)
+
+# Coming soon:
+# - add a brag list file
 
 desc 'symlink dotfiles into system-standard positions (inside .config)'
 task :install do
@@ -29,7 +32,11 @@ task :install do
 
   ######################################## Brewfile
   `echo "brewfile"`
-  `ln -s "$PWD/Brewfile" "$HOME/Brewfile"` # copy from dotfiles into home directory
+  `ln -s "$PWD/Brewfile" "$HOME/Brewfile"`
+
+  ######################################## Zellij
+  `echo "zellij files"`
+  `ln -s "$PWD/config/zellij/config.kdl" "$HOME/.config/zellij/config.kdl"`
 
   ######################################## TMUX
   `echo "tmux files"`
@@ -43,8 +50,6 @@ task :install do
 
   ######################################## Neovim
   `echo "neovim files"`
-  # back up any existing existing nvim config
-  `mv ~/.config/nvim{,.bak}`
   `ls -s "$PWD/config/nvim" "$HOME/.config/nvim"`
 
   ######################################## Install dependncies
@@ -71,6 +76,10 @@ task :install do
     `echo "fonts already installed"`
   end
 
+  ######################################## brew packages
+  `echo "installing Homebrew packages"`
+  `brew bundle install`
+
   ######################################## TMUX
   `echo "installing tmux"`
   tmux = `which tmux`
@@ -82,57 +91,34 @@ task :install do
   tpm = `ls $HOME/.tmux/plugins/tpm`
   `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm` if tpm.empty?
 
-  ######################################## packages
-  `echo "installing packages"`
-  `brew bundle install`
-
   ######################################## languages
   `echo "installing languages"`
 
   ######################################## Ruby
   `echo "installing Ruby versions via mise"`
-  mise = `which mise`
-  if mise.empty?
-    `brew install mise`
-    `mise use -g Ruby@3.4.4`
-    `gem install bundler`
-    `gem install tmuxinator`
-    `gem install neovim`
-  else
-    `echo "mise already installed, ruby versions can be installed with: mise exec ruby@3.4.4"`
-  end
+  `mise use -g ruby@3.4.4`
+  `gem install bundler`
+  `gem install tmuxinator`
+  `gem install neovim`
+  `echo "mise already installed, additinoal ruby versions can be installed with: mise exec ruby@3.4.4"`
 
   ######################################## Python
   `echo "installing Python 3 via mise"`
-  mise = `which mise`
-  if mise.empty?
-    `brew install mise`
-    `mise use -g python@3`
-    `pip3 install --upgrade pip`
-    `pip3 install --user websocket-client sexpdata neovim`
-  else
-    `echo "mise already installed, python versions can be installed with: mise exec python@3"`
-  end
+  `mise use -g python@3`
+  `echo "mise already installed, additional python versions can be installed with: mise exec python@3"`
 
   ######################################## Node
   `echo "installing node"`
-  mise = `which mise`
-  if mise.empty?
-    `brew install mise`
-    `mise use -g node@22`
-  else
-    `echo "mise already installed, node versions can be installed with: mise exec node@22"`
-  end
+  `mise use -g node@22`
+  `echo "mise already installed, additional node versions can be installed with: mise exec node@22"`
 
   ######################################## Rust
   `echo "installing rust"`
-  mise = `which mise`
-  if mise.empty?
-    `brew install mise`
-    `mise use -g rust`
-  else
-    `echo "mise already installed, rust can be installed with: mise use -g rust"`
-  end
+  `mise use -g rust`
+  `echo "mise already installed, additional rust toolchains can be installed with: mise use -g rust@1.82 && cargo build"`
+
+  ######################################## Mise catalog
+  `mise ls`
 
   ######################################## messages
   `echo press leader + I inside first tmux session to install plugins using tpm`
@@ -141,6 +127,7 @@ end
 
 desc 'remove symlinked dotfiles'
 task :uninstall do
+  # TODO: don't remove the whole directory
   `rm -Rf "$HOME/.config"`
   `rm -Rf "$HOME/Brewfile"`
 
@@ -149,7 +136,6 @@ task :uninstall do
   `rm -Rf $HOME/resources`
   `rm -Rf $HOME/archive`
 
-  `pip3 uninstall websocket-client sexpdata neovim`
   `gem uninstall neovim`
   `gem uninstall tmuxinator`
   `gem uninstall bundler`

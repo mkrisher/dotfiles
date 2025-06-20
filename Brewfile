@@ -1,9 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/services"
 
-brew "zsh"
-brew "mise"
-
 # General-purpose data compression with high compression ratio
 brew "xz"
 # TIFF library and utilities
@@ -24,6 +21,8 @@ brew "awscli"
 brew "libgit2"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Block's Goose CLI tool
+brew "block-goose-cli"
 # Yet another cross-platform graphical process/system monitor
 brew "bottom"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
@@ -54,6 +53,8 @@ brew "shared-mime-info"
 brew "libheif"
 # C/C++ seam carving library
 brew "liblqr"
+# Mise en place for managing multiple versions of programming languages
+brew "mise"
 # Library for JPEG-2000 image manipulation
 brew "openjpeg"
 # Tools and libraries to manipulate images in many formats
@@ -92,9 +93,17 @@ brew "tldr"
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Terminal multiplexer
+brew "zellij"
+# zsh (comes default on macos)
+brew "zsh"
 # General-purpose lossless data-compression library
 brew "zlib"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+
 # Control your tools with a few keystrokes
 cask "raycast"
+# Block's Goose desktop application
+cask "block-goose"
+
