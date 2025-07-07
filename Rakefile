@@ -50,7 +50,7 @@ task :install do
 
   ######################################## Neovim
   `echo "neovim files"`
-  `ls -s "$PWD/config/nvim" "$HOME/.config/nvim"`
+  `ln -s "$PWD/config/nvim" "$HOME/.config/nvim"`
 
   ######################################## Install dependncies
   `echo "dependencies"`
