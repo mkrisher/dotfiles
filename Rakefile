@@ -34,6 +34,10 @@ task :install do
   `echo "brewfile"`
   `ln -s "$PWD/Brewfile" "$HOME/Brewfile"`
 
+  ######################################## Mise
+  `echo "mise files"`
+  `ln -s "$PWD/config/mise/config.toml" "$HOME/.config/mise/config.toml"`
+
   ######################################## Zellij
   `echo "zellij files"`
   `ln -s "$PWD/config/zellij/config.kdl" "$HOME/.config/zellij/config.kdl"`
