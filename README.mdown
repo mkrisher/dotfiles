@@ -2,7 +2,7 @@
 
 My dotfiles including setup of local file management, language installation, config file management and package management
 
-I use Neovim. ZSH for a shell. Mise for management. Everything installs via Rake commands.
+I use Neovim. ZSH for a shell. Mise for management. Everything installs via Rake commands. Thanks Jim Weirich!
 
 ```
 git clone https://github.com/mkrisher/dotfiles.git
@@ -21,6 +21,8 @@ rake install
 - Zsh
 
 - Zellij
+
+- Mise
 
 - Warp terminal
 
