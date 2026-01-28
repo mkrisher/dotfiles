@@ -26,68 +26,237 @@ mise ls
 ### Language Version Management
 ```bash
 # Install specific language versions
-mise use -g ruby@3.4.4
+mise use -g ruby@3.4.7
 mise use -g python@3
 mise use -g node@22
 mise use -g rust
 
-# Install additional versions
-mise exec ruby@3.4.4
-mise exec python@3
-mise exec node@22
-mise use -g rust@1.82 && cargo build
+# Check current versions
+mise current
 ```
 
 ### Git Operations
-Git config is managed via `config/git/gitconfig.symlink` with extensive aliases for common operations.
+Git config is managed via `config/git/gitconfig.symlink` with extensive aliases:
+- `git st` - status (ignoring submodules)
+- `git cm` - commit
+- `git br` - branch
+- `git co` - checkout
+- `git df` - diff
+- `git lg` - log with patch
+- `git lo` - one-line log
+- `git pom` - pull origin master
+- `git pop` / `git save` - stash operations
+- `git edit` - open modified files in editor
 
-### Tmux Plugin Management
-After first tmux session, press `leader + I` to install plugins using tpm.
+### Tmux Operations
+- **Prefix**: `Ctrl+A` (not default Ctrl+B)
+- **Install plugins**: `<prefix> + I` (first run)
+- **Reload config**: `<prefix> + Ctrl+r`
+- **Edit config**: `<prefix> + Ctrl+e`
 
 ## Architecture and Organization
 
+### Directory Structure
+```
+dotfiles/
+├── Rakefile                    # Installation automation
+├── Brewfile                    # Homebrew package definitions
+├── starship.toml               # Starship prompt configuration
+├── config/
+│   ├── nvim/                   # LazyVim-based Neovim config
+│   │   ├── init.lua            # Bootstrap loader
+│   │   ├── lazyvim.json        # LazyVim extras config
+│   │   ├── lua/config/         # Core Neovim settings
+│   │   │   ├── lazy.lua        # Plugin manager setup
+│   │   │   ├── options.lua     # Vim options
+│   │   │   ├── keymaps.lua     # Custom keymaps
+│   │   │   └── autocmds.lua    # Autocommands
+│   │   ├── lua/plugins/        # Plugin configurations
+│   │   │   ├── claude.lua      # Claude Code integration
+│   │   │   ├── colorscheme.lua # GitHub Colorblind theme
+│   │   │   ├── goose.lua       # Goose AI plugin
+│   │   │   └── lsp_lines.lua   # LSP diagnostics
+│   │   └── snippets/           # Code snippets (ruby, rails, rspec)
+│   ├── git/
+│   │   ├── gitconfig.symlink   # Git configuration
+│   │   ├── gitignore.symlink   # Global gitignore
+│   │   └── cleanup.sh          # Branch cleanup script
+│   ├── tmux/
+│   │   └── tmux.conf           # Tmux configuration
+│   ├── zsh/
+│   │   └── zshrc               # Zsh shell config
+│   ├── mise/
+│   │   └── config.toml         # Version manager config
+│   ├── tmuxinator/             # Tmuxinator project templates
+│   ├── zellij/                 # Alternative terminal multiplexer
+│   ├── gh/                     # GitHub CLI config
+│   └── ruby/                   # Ruby configs (irb, gem, debugger)
+├── shortcuts/                  # macOS Shortcuts automation
+└── zsh/                        # Legacy zsh location
+```
+
 ### File Structure Philosophy
-- **PARA Method**: Uses Projects, Areas, Resources, Archives directories in `$HOME`
-- **XDG Config**: Attempts to centralize all configs in `~/.config`
-- **Symlink Strategy**: Files are kept in dotfiles repo and symlinked to system locations
+- **PARA Method**: Creates `~/projects`, `~/areas`, `~/resources`, `~/archive`
+- **XDG Config**: Centralizes configs in `~/.config` where possible
+- **Symlink Strategy**: Two-tier approach for compatibility
 
-### Key Directories
-- `config/nvim/`: LazyVim-based Neovim configuration
-- `config/git/`: Git configuration and global gitignore
-- `config/zsh/`: Zsh shell customization
-- `config/tmux/`: Terminal multiplexer configuration
-- `config/zellij/`: Modern terminal multiplexer (alternative to tmux)
-- `config/raycast/`: macOS launcher extensions
-- `fonts/`: Powerline-compatible font collection
-- `shortcuts/`: macOS Shortcuts automation files
+### Symlink Management
+The Rakefile creates symlinks with this pattern:
 
-### Core Technologies
-- **Shell**: Zsh with Starship prompt
-- **Editor**: Neovim with LazyVim distribution
-- **Terminal**: Supports both Tmux and Zellij multiplexers
-- **Package Manager**: Homebrew (managed via Brewfile)
-- **Version Manager**: Mise for Ruby, Python, Node, Rust
-- **File Organization**: PARA method implementation
+**Direct XDG (preferred)**:
+- `config/nvim/` → `~/.config/nvim`
+- `config/mise/config.toml` → `~/.config/mise/config.toml`
+- `config/zellij/config.kdl` → `~/.config/zellij/config.kdl`
 
-### Development Tools Stack
-Essential tools installed via Brewfile include:
-- `bat`, `eza`, `fd`, `fzf`, `ripgrep`, `tree` (modern CLI utilities)
-- `gh`, `lazygit`, `git-secrets`, `gitleaks` (Git workflow)
-- `neovim`, `tmux`, `zellij` (development environment)
-- `jq`, `jless` (JSON processing)
-- `btop`, `bottom` (system monitoring)
+**Dual symlink (compatibility)**:
+- Git: `config/git/gitconfig.symlink` → `~/.config/.gitconfig` → `~/.gitconfig`
+- Tmux: `config/tmux/tmux.conf` → `~/.config/.tmux.conf` → `~/.tmux.conf`
 
-### Installation Behavior
-The `rake install` task:
-1. Creates PARA directory structure in `$HOME`
-2. Creates `.aliases` and `.env` files in `~/.config`
-3. Symlinks all configuration files to appropriate locations  
+**Root level**:
+- `Brewfile` → `~/Brewfile`
+
+## Neovim Configuration
+
+### LazyVim Extras Enabled
+From `config/nvim/lazyvim.json`:
+- **AI**: copilot
+- **Coding**: luasnip, mini-snippets
+- **Editor**: neo-tree, telescope
+- **Formatting**: black
+- **Languages**: docker, git, json, python, ruby, rust, sql, tailwind, toml, typescript, vue, yaml
+- **UI**: edgy, mini-animate, smear-cursor
+
+### Custom Plugins
+| Plugin | Purpose | Key Bindings |
+|--------|---------|--------------|
+| claudecode.nvim | Claude AI integration | `<leader>a*` prefix |
+| github-nvim-theme | GitHub Colorblind colorscheme | - |
+| goose.nvim | AI code generation | - |
+| lsp_lines.nvim | Enhanced LSP diagnostics | - |
+
+### Key Settings
+- **Leader key**: `\` (backslash)
+- **Line numbers**: Absolute + relative
+- **Colorscheme**: GitHub Colorblind
+
+## Tmux Configuration
+
+### Key Bindings Reference
+| Action | Binding |
+|--------|---------|
+| Prefix | `Ctrl+A` |
+| Previous/Next window | `Ctrl+[` / `Ctrl+]` |
+| Last window (MRU) | `Tab` |
+| New window | `c` |
+| Split horizontal | `\|` |
+| Split vertical | `_` |
+| Select pane | `[` / `]` |
+| Resize pane | `+` / `-` |
+| Kill session | `Q` |
+| Detach | `D` |
+| Copy mode | `Alt+Up` |
+
+### Theme
+- Catppuccin Frappe color scheme
+- Status bar shows: directory, user, host, session
+
+## Zsh Configuration
+
+### PATH Extensions
+- Homebrew (`/opt/homebrew/bin`, `/usr/local/bin`)
+- Cargo (`~/.cargo/bin`)
+- Local bin (`~/.local/bin`)
+- LLVM (`/opt/homebrew/opt/llvm/bin`)
+
+### Integrations
+- Starship prompt
+- Zoxide (z command for navigation)
+- Mise version management
+- Google Cloud SDK (if installed)
+
+### Key Bindings
+- `Alt+D` / `Alt+C` - Backward/forward word
+- `Alt+A` / `Alt+E` - Beginning/end of line
+
+## Mise Version Configuration
+
+From `config/mise/config.toml`:
+```toml
+[tools]
+node = "22"
+python = "3"
+ruby = "3.4.7"
+rust = "latest"
+```
+
+## Development Tools Stack
+
+### CLI Utilities (via Brewfile)
+| Tool | Purpose |
+|------|---------|
+| bat | Syntax-highlighted cat |
+| eza | Modern ls replacement |
+| fd | Fast find replacement |
+| fzf | Fuzzy finder |
+| ripgrep | Fast grep replacement |
+| tree | Directory visualization |
+| zoxide | Smart directory navigation |
+| jq, jless | JSON processing |
+| btop, bottom | System monitoring |
+| thefuck | Command correction |
+| tldr | Simplified man pages |
+
+### Git Tools
+- gh (GitHub CLI)
+- lazygit (TUI for git)
+- git-secrets (secret scanning)
+- gitleaks (secret detection)
+
+## Installation Behavior
+
+The `rake install` task performs:
+1. Creates PARA directory structure (`~/projects`, `~/areas`, `~/resources`, `~/archive`)
+2. Creates local config files (`~/.config/.aliases`, `~/.config/.env`)
+3. Symlinks all configuration files
 4. Installs Homebrew if not present
-5. Installs Powerline fonts for terminal display
-6. Sets up language runtimes via Mise
-7. Configures tmux plugin manager (tpm)
+5. Runs `brew bundle install`
+6. Clones and installs Powerline fonts
+7. Installs language runtimes via Mise:
+   - Ruby 3.4.4 with bundler, tmuxinator, neovim gems
+   - Python 3
+   - Node 22
+   - Rust (latest)
+8. Clones tmux plugin manager (tpm) to `~/.tmux/plugins/tpm`
 
-### Configuration Management
-- Environment-specific settings go in `~/.config/.env` and `~/.config/.aliases`
-- All configs attempt XDG compliance but some tools require `$HOME` locations
-- Git, tmux configs are symlinked to both `~/.config` and `$HOME` for compatibility
+## Configuration Patterns
+
+### Environment Customization
+Local machine-specific settings belong in:
+- `~/.config/.env` - Environment variables
+- `~/.config/.aliases` - Shell aliases
+
+These files are created by install but not tracked in git.
+
+### Adding New Tools
+1. Add brew packages to `Brewfile`
+2. Add config files under `config/<tool>/`
+3. Update `Rakefile` with symlink commands if needed
+4. Run `rake install` to apply
+
+### Neovim Plugin Development
+1. Add plugin spec to `config/nvim/lua/plugins/<name>.lua`
+2. Follow LazyVim plugin spec format
+3. Restart Neovim to auto-install
+
+## Key File Paths
+
+| File | Purpose |
+|------|---------|
+| `Rakefile` | Installation automation (149 lines) |
+| `Brewfile` | Package definitions (110 lines) |
+| `starship.toml` | Prompt configuration (88 lines) |
+| `config/tmux/tmux.conf` | Tmux configuration (212 lines) |
+| `config/zsh/zshrc` | Shell configuration (58 lines) |
+| `config/nvim/lua/config/lazy.lua` | Plugin manager setup (53 lines) |
+| `config/git/gitconfig.symlink` | Git configuration |
+| `config/mise/config.toml` | Version manager config |
