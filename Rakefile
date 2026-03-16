@@ -56,6 +56,10 @@ task :install do
   `echo "neovim files"`
   `ln -s "$PWD/config/nvim" "$HOME/.config/nvim"`
 
+  ######################################## Claude
+  `echo "claude files"`
+  `ln -s "$PWD/config/claude/settings.json" "$HOME/.claude/settings.json"`
+
   ######################################## Install dependncies
   `echo "dependencies"`
 

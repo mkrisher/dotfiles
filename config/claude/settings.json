@@ -1,0 +1,8 @@
+{
+  "env": {
+    "ENABLE_LSP_TOOL": "1"
+  },
+  "enabledPlugins": {
+    "ruby-lsp@claude-plugins-official": true
+  }
+}
