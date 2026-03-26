@@ -60,6 +60,7 @@ task :install do
   `echo "claude files"`
   `ln -s "$PWD/config/claude/settings.json" "$HOME/.claude/settings.json"`
   `ln -s "$PWD/config/claude/statusline.js" "$HOME/.claude/statusline.js"`
+  `ln -s "$PWD/config/claude/rules" "$HOME/.claude/rules"`
 
   ######################################## Install dependncies
   `echo "dependencies"`
