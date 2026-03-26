@@ -4,9 +4,8 @@ description: "Git and PR conventions"
 ---
 
 # Commits
-- Conventional commits: feat: fix: chore:
 - Use Linear branch names
-- Imperative mood: "Fix bug" not "Fixed bug"
+- Always include GitHub issue number in the commit message, if applicable. For example: "Fix bug #1234"
 
 # Always branch first
 - Never work on main. Remind me if I haven't branched.

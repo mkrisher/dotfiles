@@ -1,6 +1,79 @@
 {
+  "includeCoAuthoredBy": false,
+  "spinnerTipsEnabled": false,
+  "effortLevel": "medium",
+  "promptSuggestionEnabled": false,
   "env": {
     "ENABLE_LSP_TOOL": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Zsh(awk:*)",
+      "Zsh(cat:*)",
+      "Zsh(curl:*)",
+      "Zsh(diff:*)",
+      "Zsh(du:*)",
+      "Zsh(fd:*)",
+      "Zsh(file:*)",
+      "Zsh(find:*)",
+      "Zsh(head:*)",
+      "Zsh(jq:*)",
+      "Zsh(ls:*)",
+      "Zsh(mkdir:*)",
+      "Zsh(grep:*)",
+      "Zsh(rg:*)",
+      "Zsh(sed:*)",
+      "Zsh(stat:*)",
+      "Zsh(tail:*)",
+      "Zsh(wc:*)",
+      "Zsh(which:*)",
+      "Zsh(git add:*)",
+      "Zsh(git branch:*)",
+      "Zsh(git checkout:*)",
+      "Zsh(git commit:*)",
+      "Zsh(git describe:*)",
+      "Zsh(git diff:*)",
+      "Zsh(git fetch:*)",
+      "Zsh(git for-each-ref:*)",
+      "Zsh(git log:*)",
+      "Zsh(git ls-tree:*)",
+      "Zsh(git rev-parse:*)",
+      "Zsh(git show:*)",
+      "Zsh(git status:*)",
+      "Zsh(git blame:*)",
+      "Zsh(git cherry-pick:*)",
+      "Zsh(git config:*)",
+      "Zsh(git push:*)",
+      "Zsh(git rebase:*)",
+      "Zsh(git reflog:*)",
+      "Zsh(git remote:*)",
+      "Zsh(git stash:*)",
+      "Zsh(git tag:*)",
+      "Zsh(gh issue list:*)",
+      "Zsh(gh issue status:*)",
+      "Zsh(gh issue view:*)",
+      "Zsh(gh pr diff:*)",
+      "Zsh(gh pr list:*)",
+      "Zsh(gh pr status:*)",
+      "Zsh(gh pr view:*)",
+      "Zsh(gh search:*)",
+      "Zsh(glab issue list:*)",
+      "Zsh(glab issue view:*)",
+      "Zsh(glab mr list:*)",
+      "Zsh(glab mr view:*)",
+      "Zsh(npm info:*)",
+      "Zsh(npm install:*)",
+      "Zsh(npm run build:*)",
+      "Zsh(npm run lint:*)",
+      "Zsh(npm search:*)",
+      "Zsh(node --check:*)"
+    ],
+    "deny": [
+      "Read(.env*)"
+    ],
+    "ask": [
+      "Read(~/.config/*)"
+    ]
   },
   "hooks": {
     "Notification": [
@@ -15,9 +88,15 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.js",
+    "padding": 0
+  },
   "enabledPlugins": {
     "ruby-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
     "cctop@cctop": true
   },
   "extraKnownMarketplaces": {
