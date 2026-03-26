@@ -104,6 +104,5 @@ brew "zoxide"
 
 # Control your tools with a few keystrokes
 cask "raycast"
-# Block's Goose desktop application
-cask "block-goose"
-
+ # Claude Code session menubar
+cask "st0012/cctop/cctop"
