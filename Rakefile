@@ -100,6 +100,7 @@ task :install do
   end
   tpm = `ls $HOME/.tmux/plugins/tpm`
   `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm` if tpm.empty?
+  `curl -fsSL https://bun.sh/install | bash` # for tmux-palette
 
   ######################################## languages
   `echo "installing languages"`

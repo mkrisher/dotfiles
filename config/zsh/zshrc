@@ -36,6 +36,8 @@ bindkey "^[e" end-of-line
 
 eval "$(zoxide init zsh)"
 
+eval "$(ssh-agent -s)"
+
 # puts tailwind ahead of rbenv shim
 export PATH="/usr/local/bin:$PATH"
 
@@ -55,3 +57,10 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 eval "$(mise activate zsh)"
+
+# bun completions
+[ -s "/Users/mkrisher/.bun/_bun" ] && source "/Users/mkrisher/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

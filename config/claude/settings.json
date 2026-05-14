@@ -1,11 +1,8 @@
 {
-  "includeCoAuthoredBy": false,
-  "spinnerTipsEnabled": false,
-  "effortLevel": "medium",
-  "promptSuggestionEnabled": false,
   "env": {
     "ENABLE_LSP_TOOL": "1"
   },
+  "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
       "Zsh(awk:*)",
@@ -106,5 +103,9 @@
         "repo": "st0012/cctop"
       }
     }
-  }
+  },
+  "spinnerTipsEnabled": false,
+  "effortLevel": "medium",
+  "promptSuggestionEnabled": false,
+  "theme": "dark-daltonized"
 }
