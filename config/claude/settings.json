@@ -94,7 +94,8 @@
     "ruby-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "cctop@cctop": true
+    "cctop@cctop": true,
+    "warp@claude-code-warp": true
   },
   "extraKnownMarketplaces": {
     "cctop": {
@@ -102,10 +103,18 @@
         "source": "github",
         "repo": "st0012/cctop"
       }
+    },
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
+      }
     }
   },
   "spinnerTipsEnabled": false,
   "effortLevel": "medium",
   "promptSuggestionEnabled": false,
-  "theme": "dark-daltonized"
+  "tui": "fullscreen",
+  "theme": "dark-daltonized",
+  "agentPushNotifEnabled": true
 }
