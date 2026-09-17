@@ -1,5 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/services"
+tap "omnigent-ai/tap"
 
 # General-purpose data compression with high compression ratio
 brew "xz"
@@ -101,8 +102,16 @@ brew "zsh"
 brew "zlib"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# omnigent from databricks
+brew "omnigent-ai/tap/omnigent"
+# herdr for controlling agents like tmux
+brew "herdr"
+# install uv for python 
+brew "uv"
 
 # Control your tools with a few keystrokes
 cask "raycast"
  # Claude Code session menubar
 cask "st0012/cctop/cctop"
+# agentsview.io
+cask "agentsview"
