@@ -64,3 +64,6 @@ eval "$(mise activate zsh)"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Pi
+export PATH="/Users/mkrisher/.local/share/mise/installs/node/26.9.0/bin:$PATH"
