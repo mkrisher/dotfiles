@@ -1,7 +1,7 @@
 [tools]
 node = "latest"
 python = "3"
-ruby = "3.4.7"
+ruby = "latest"
 rust = "latest"
 
 [settings]
