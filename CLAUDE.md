@@ -203,7 +203,6 @@ rust = "latest"
 | zoxide | Smart directory navigation |
 | jq, jless | JSON processing |
 | btop, bottom | System monitoring |
-| thefuck | Command correction |
 | tldr | Simplified man pages |
 
 ### Git Tools
