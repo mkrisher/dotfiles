@@ -27,9 +27,11 @@ mise ls
 ```bash
 # Install specific language versions
 mise use -g ruby@3.4.7
-mise use -g python@3
 mise use -g node@22
 mise use -g rust
+
+# Python is managed by uv, not mise
+uv python install --default
 
 # Check current versions
 mise current
@@ -184,7 +186,6 @@ From `config/mise/config.toml`:
 ```toml
 [tools]
 node = "22"
-python = "3"
 ruby = "3.4.7"
 rust = "latest"
 ```
@@ -203,7 +204,6 @@ rust = "latest"
 | zoxide | Smart directory navigation |
 | jq, jless | JSON processing |
 | btop, bottom | System monitoring |
-| thefuck | Command correction |
 | tldr | Simplified man pages |
 
 ### Git Tools
@@ -223,9 +223,9 @@ The `rake install` task performs:
 6. Clones and installs Powerline fonts
 7. Installs language runtimes via Mise:
    - Ruby 3.4.4 with bundler, tmuxinator, neovim gems
-   - Python 3
    - Node 22
    - Rust (latest)
+   - Python 3 via uv (`uv python install --default`)
 8. Clones tmux plugin manager (tpm) to `~/.tmux/plugins/tpm`
 
 ## Configuration Patterns

@@ -1,6 +1,5 @@
 tap "homebrew/bundle"
 tap "homebrew/services"
-tap "omnigent-ai/tap"
 
 # General-purpose data compression with high compression ratio
 brew "xz"
@@ -22,8 +21,6 @@ brew "awscli"
 brew "libgit2"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Block's Goose CLI tool
-brew "block-goose-cli"
 # Yet another cross-platform graphical process/system monitor
 brew "bottom"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
@@ -86,8 +83,6 @@ brew "ripgrep"
 brew "starship"
 # Tool Command Language
 brew "tcl-tk"
-# Programmatically correct mistyped console commands
-brew "thefuck"
 # Simplified and community-driven man pages
 brew "tldr"
 # Terminal multiplexer
@@ -102,8 +97,6 @@ brew "zsh"
 brew "zlib"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
-# omnigent from databricks
-brew "omnigent-ai/tap/omnigent"
 # herdr for controlling agents like tmux
 brew "herdr"
 # install uv for python 
