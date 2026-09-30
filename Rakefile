@@ -11,7 +11,8 @@ require 'rake'
 # - Neovim
 # - LazyVim
 # - Mise
-# - Ruby, Python, Node, Rust versions (via Mise)
+# - Ruby, Node, Rust versions (via Mise)
+# - Python (via uv)
 
 # Coming soon:
 # - add a brag list file
@@ -114,9 +115,9 @@ task :install do
   `echo "mise already installed, additinoal ruby versions can be installed with: mise exec ruby@3.4.4"`
 
   ######################################## Python
-  `echo "installing Python 3 via mise"`
-  `mise use -g python@3`
-  `echo "mise already installed, additional python versions can be installed with: mise exec python@3"`
+  `echo "installing Python 3 via uv"`
+  `uv python install --default`
+  `echo "uv already installed, additional python versions can be installed with: uv python install 3.x"`
 
   ######################################## Node
   `echo "installing node"`
