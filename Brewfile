@@ -101,6 +101,8 @@ brew "zoxide"
 brew "herdr"
 # install uv for python 
 brew "uv"
+# menubar hider
+brew "thaw"
 
 # Control your tools with a few keystrokes
 cask "raycast"
