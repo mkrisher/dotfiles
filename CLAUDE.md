@@ -4,37 +4,40 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a personal dotfiles repository using a Ruby-based Rake automation system. It manages development environment setup including Neovim with LazyVim, Zsh shell, modern terminal tools, and language runtimes via Mise.
+This is a personal dotfiles repository managed as a Nix flake (nix-darwin + home-manager + Homebrew). It manages Neovim with LazyVim, Zsh shell, modern terminal tools and Homebrew packages. Language runtimes (Ruby, Node, Rust) belong to each project's devenv; Mise is kept only until projects have moved to devenv.
 
 ## Common Commands
 
 ### Installation and Setup
 ```bash
-# Full dotfiles installation
-rake install
+# First time only (installs darwin-rebuild)
+sudo nix run nix-darwin -- switch --flake ~/projects/dotfiles#Mike-M5
 
-# Remove all dotfiles and configurations
-rake uninstall
+# Apply changes after editing nix/*.nix or adding links
+sudo darwin-rebuild switch --flake ~/projects/dotfiles
 
-# Install Homebrew packages from Brewfile
-brew bundle install
+# Build without activating (safe check)
+nix build .#darwinConfigurations.Mike-M5.system --no-link
 
-# List all installed language versions
-mise ls
+# Update pinned inputs (nixpkgs, nix-darwin, home-manager)
+nix flake update
 ```
 
-### Language Version Management
+Edits to files under `config/` take effect immediately (they are symlinked to this checkout); only changes to the `.nix` files need a rebuild. New files must be `git add`ed (at least `git add -N`) before Nix can see them.
+
+### Adding a Homebrew package
+Add it to `brews` or `casks` in `nix/homebrew.nix`, then run `darwin-rebuild switch`. `cleanup = "none"`, so removing a line does not uninstall the package.
+
+### Language Versions
+Ruby, Node and Rust are declared per project in `devenv.nix` (`languages.ruby.enable`, etc.), loaded by direnv via a `.envrc`:
 ```bash
-# Install specific language versions
-mise use -g ruby@3.4.7
-mise use -g node@22
-mise use -g rust
+devenv init
+direnv allow
+```
 
-# Python is managed by uv, not mise
+Python is managed by uv, not Mise or devenv globally:
+```bash
 uv python install --default
-
-# Check current versions
-mise current
 ```
 
 ### Git Operations
@@ -61,9 +64,13 @@ Git config is managed via `config/git/gitconfig.symlink` with extensive aliases:
 ### Directory Structure
 ```
 dotfiles/
-├── Rakefile                    # Installation automation
-├── Brewfile                    # Homebrew package definitions
+├── flake.nix                   # Flake entry point (machine Mike-M5)
+├── flake.lock                  # Pinned inputs
 ├── starship.toml               # Starship prompt configuration
+├── nix/
+│   ├── darwin.nix              # System settings, fonts
+│   ├── homebrew.nix            # Homebrew taps, brews, casks
+│   └── home.nix                # Symlinks, home packages, activation steps
 ├── config/
 │   ├── nvim/                   # LazyVim-based Neovim config
 │   │   ├── init.lua            # Bootstrap loader
@@ -81,16 +88,17 @@ dotfiles/
 │   │   └── snippets/           # Code snippets (ruby, rails, rspec)
 │   ├── git/
 │   │   ├── gitconfig.symlink   # Git configuration
-│   │   ├── gitignore.symlink   # Global gitignore
+│   │   ├── ignore              # Global gitignore
 │   │   └── cleanup.sh          # Branch cleanup script
 │   ├── tmux/
 │   │   └── tmux.conf           # Tmux configuration
 │   ├── zsh/
 │   │   └── zshrc               # Zsh shell config
 │   ├── mise/
-│   │   └── config.toml         # Version manager config
+│   │   └── config.toml         # Version manager config (transitional)
 │   ├── tmuxinator/             # Tmuxinator project templates
 │   ├── zellij/                 # Alternative terminal multiplexer
+│   ├── claude/                 # Claude Code settings, statusline, rules
 │   ├── gh/                     # GitHub CLI config
 │   └── ruby/                   # Ruby configs (irb, gem, debugger)
 ├── shortcuts/                  # macOS Shortcuts automation
@@ -100,22 +108,18 @@ dotfiles/
 ### File Structure Philosophy
 - **PARA Method**: Creates `~/projects`, `~/areas`, `~/resources`, `~/archive`
 - **XDG Config**: Centralizes configs in `~/.config` where possible
-- **Symlink Strategy**: Two-tier approach for compatibility
+- **Symlink Strategy**: Declared in `nix/home.nix`, linked back to this checkout
 
 ### Symlink Management
-The Rakefile creates symlinks with this pattern:
+Symlinks are declared in `nix/home.nix` (`home.file` for `~`, `xdg.configFile` for `~/.config`). They use `mkOutOfStoreSymlink`, so each target points back at this checkout rather than a read-only store copy. Files already at a target are renamed with a `.pre-nix` suffix.
 
-**Direct XDG (preferred)**:
+Examples:
+- `config/zsh/zshrc` → `~/.zshrc`
+- `config/git/gitconfig.symlink` → `~/.gitconfig`
 - `config/nvim/` → `~/.config/nvim`
-- `config/mise/config.toml` → `~/.config/mise/config.toml`
-- `config/zellij/config.kdl` → `~/.config/zellij/config.kdl`
+- `config/claude/settings.json` → `~/.claude/settings.json`
 
-**Dual symlink (compatibility)**:
-- Git: `config/git/gitconfig.symlink` → `~/.config/.gitconfig` → `~/.gitconfig`
-- Tmux: `config/tmux/tmux.conf` → `~/.config/.tmux.conf` → `~/.tmux.conf`
-
-**Root level**:
-- `Brewfile` → `~/Brewfile`
+To link a new file, add an entry to `nix/home.nix` and rebuild.
 
 ## Neovim Configuration
 
@@ -180,19 +184,13 @@ From `config/nvim/lazyvim.json`:
 - `Alt+D` / `Alt+C` - Backward/forward word
 - `Alt+A` / `Alt+E` - Beginning/end of line
 
-## Mise Version Configuration
+## Mise (transitional)
 
-From `config/mise/config.toml`:
-```toml
-[tools]
-node = "22"
-ruby = "3.4.7"
-rust = "latest"
-```
+`config/mise/config.toml` still pins global `node`, `ruby` and `rust`, and `zshrc` still runs `mise activate`. Once projects are on devenv, remove Mise from `zshrc`, `config/mise/`, `nix/home.nix` and `nix/homebrew.nix`.
 
 ## Development Tools Stack
 
-### CLI Utilities (via Brewfile)
+### CLI Utilities (via nix/homebrew.nix)
 | Tool | Purpose |
 |------|---------|
 | bat | Syntax-highlighted cat |
@@ -212,21 +210,18 @@ rust = "latest"
 - git-secrets (secret scanning)
 - gitleaks (secret detection)
 
-## Installation Behavior
+## Activation Behavior
 
-The `rake install` task performs:
-1. Creates PARA directory structure (`~/projects`, `~/areas`, `~/resources`, `~/archive`)
-2. Creates local config files (`~/.config/.aliases`, `~/.config/.env`)
-3. Symlinks all configuration files
-4. Installs Homebrew if not present
-5. Runs `brew bundle install`
-6. Clones and installs Powerline fonts
-7. Installs language runtimes via Mise:
-   - Ruby 3.4.4 with bundler, tmuxinator, neovim gems
-   - Node 22
-   - Rust (latest)
-   - Python 3 via uv (`uv python install --default`)
-8. Clones tmux plugin manager (tpm) to `~/.tmux/plugins/tpm`
+`darwin-rebuild switch` does the following:
+1. Installs and configures Homebrew packages from `nix/homebrew.nix` (no auto-update or upgrade)
+2. Installs Powerline fonts
+3. Links all dotfiles via home-manager
+4. Installs `devenv`, `direnv` (with nix-direnv) and `tmuxinator`
+5. Creates `~/projects`, `~/areas`, `~/resources`, `~/archive`
+6. Creates local config files (`~/.config/.aliases`, `~/.config/.env`)
+7. Clones tmux plugin manager (tpm) to `~/.tmux/plugins/tpm` if missing
+
+Still manual: `uv python install --default`, bun (for tmux-palette), and Mise runtimes until projects move to devenv.
 
 ## Configuration Patterns
 
@@ -235,13 +230,16 @@ Local machine-specific settings belong in:
 - `~/.config/.env` - Environment variables
 - `~/.config/.aliases` - Shell aliases
 
-These files are created by install but not tracked in git.
+These files are created on switch but not tracked in git.
+
+### Nix and secrets
+Nix is installed by the Determinate installer, so `nix.enable = false` in `nix/darwin.nix`. System-wide Nix settings (binary caches, trusted users) go in `/etc/nix/nix.custom.conf`. The GitHub access token lives in `~/.config/nix/access-tokens.conf` (mode 600, included from `~/.config/nix/nix.conf`); never put it in this repo.
 
 ### Adding New Tools
-1. Add brew packages to `Brewfile`
+1. Add brew packages to `nix/homebrew.nix` (or Nix packages to `home.packages` in `nix/home.nix`)
 2. Add config files under `config/<tool>/`
-3. Update `Rakefile` with symlink commands if needed
-4. Run `rake install` to apply
+3. Add a symlink entry in `nix/home.nix` if needed
+4. Run `darwin-rebuild switch`
 
 ### Neovim Plugin Development
 1. Add plugin spec to `config/nvim/lua/plugins/<name>.lua`
@@ -252,11 +250,13 @@ These files are created by install but not tracked in git.
 
 | File | Purpose |
 |------|---------|
-| `Rakefile` | Installation automation (149 lines) |
-| `Brewfile` | Package definitions (110 lines) |
-| `starship.toml` | Prompt configuration (88 lines) |
-| `config/tmux/tmux.conf` | Tmux configuration (212 lines) |
-| `config/zsh/zshrc` | Shell configuration (58 lines) |
-| `config/nvim/lua/config/lazy.lua` | Plugin manager setup (53 lines) |
+| `flake.nix` | Flake entry point |
+| `nix/homebrew.nix` | Homebrew packages |
+| `nix/home.nix` | Symlinks and home setup |
+| `nix/darwin.nix` | System settings |
+| `starship.toml` | Prompt configuration |
+| `config/tmux/tmux.conf` | Tmux configuration |
+| `config/zsh/zshrc` | Shell configuration |
+| `config/nvim/lua/config/lazy.lua` | Plugin manager setup |
 | `config/git/gitconfig.symlink` | Git configuration |
 | `config/mise/config.toml` | Version manager config |
