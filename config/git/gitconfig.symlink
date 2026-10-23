@@ -3,7 +3,7 @@
 	name = Mike Krisher
 [core]
   editor = nvim
-	excludesfile = /Users/mikekrisher/.config/git/ignore
+	excludesfile = ~/.config/git/ignore
 [color]
   ui = true
 [alias]
@@ -27,3 +27,7 @@
 	stash = false
 [pull]
 	rebase = true
+[includeIf "hasconfig:remote.*.url:https://github.com/sixfeetup/**"]
+	path = ~/.config/git/sixfeetup.gitconfig
+[includeIf "hasconfig:remote.*.url:git@github.com:sixfeetup/**"]
+	path = ~/.config/git/sixfeetup.gitconfig
