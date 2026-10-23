@@ -57,7 +57,6 @@
       "ripgrep"
       "ruby-build"
       "starship"
-      "thaw"
       "tldr"
       "tmux"
       "tree"
