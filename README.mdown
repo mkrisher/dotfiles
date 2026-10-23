@@ -1,39 +1,38 @@
 # mkrisher's dot-files
 
-My dotfiles including setup of local file management, language installation, config file management and package management
+My macOS setup, declared as a Nix flake: [nix-darwin](https://github.com/nix-darwin/nix-darwin) for the system and Homebrew, [home-manager](https://github.com/nix-community/home-manager) for dotfile symlinks, and [devenv](https://devenv.sh) for per-project languages and gems.
 
-I use Neovim. ZSH for a shell. Mise for management. Everything installs via Rake commands. Thanks Jim Weirich!
+I use Neovim (LazyVim), Zsh with Starship, tmux and Zellij.
+
+## Setup
+
+Requires Nix (Determinate installer) and Homebrew.
 
 ```
-git clone https://github.com/mkrisher/dotfiles.git
+git clone https://github.com/mkrisher/dotfiles.git ~/projects/dotfiles
+cd ~/projects/dotfiles
 
-cd dotfiles
+# first time only
+sudo nix run nix-darwin -- switch --flake .#Mike-M5
 
-rake install
+# afterwards
+sudo darwin-rebuild switch --flake ~/projects/dotfiles
 ```
 
-### high level
+## Layout
 
-- Neovim with LazyVim
+- `flake.nix`: inputs and the `Mike-M5` machine
+- `nix/darwin.nix`: system settings and fonts
+- `nix/homebrew.nix`: Homebrew taps, formulae and casks. Add packages here.
+- `nix/home.nix`: dotfile symlinks, home-manager packages (devenv, direnv, tmuxinator) and setup steps
+- `config/`: the dotfiles themselves, symlinked into place by `nix/home.nix`
 
-- Brew for Mac OS
+Dotfiles are symlinked to this checkout rather than copied, so edits take effect without a rebuild.
 
-- Zsh
+## Languages
 
-- Zellij
+Ruby, Node and Rust live in each project's `devenv.nix`. Projects opt in with a `.envrc` containing `eval "$(devenv direnvrc)" && use devenv`. Python is installed with `uv`.
 
-- Mise
+## PARA
 
-- Warp terminal
-
-- Rust, Ruby, Python, Node
-
-- Starship
-
-### config
-
-Tries to put everything in the .config directory. Looking at you Brewfile.
-
-#### PARA
-
-I use the PARA method for organizing my files. This means I have a Projects, Areas, Resources and Archives directory. Look up Building A Second Brain if you are not familiar.
+I use the PARA method for organizing my files: Projects, Areas, Resources and Archives directories. Look up Building A Second Brain if you are not familiar.

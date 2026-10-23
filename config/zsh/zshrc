@@ -58,6 +58,9 @@ export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 eval "$(mise activate zsh)"
 
+# loads per-project devenv environments (see .envrc in each project)
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
+
 # bun completions
 [ -s "/Users/mkrisher/.bun/_bun" ] && source "/Users/mkrisher/.bun/_bun"
 
