@@ -15,6 +15,11 @@
 
   fonts.packages = [ pkgs.powerline-fonts ];
 
+  security.pki.caCertificateBlacklist = [
+    "Comodo AAA Services root"
+    "emSign ECC Root CA - G3"
+  ];
+
   # Bump only after reading the nix-darwin changelog.
   system.stateVersion = 6;
 }
