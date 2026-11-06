@@ -20,6 +20,11 @@ in
     nix-direnv.enable = true;
   };
 
+  programs.yazi = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   home.file = {
     ".zshrc".source = link "config/zsh/zshrc";
     ".tmux.conf".source = link "config/tmux/tmux.conf";
