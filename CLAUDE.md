@@ -125,7 +125,6 @@ To link a new file, add an entry to `nix/home.nix` and rebuild.
 
 ### LazyVim Extras Enabled
 From `config/nvim/lazyvim.json`:
-- **AI**: copilot
 - **Coding**: luasnip, mini-snippets
 - **Editor**: neo-tree, telescope
 - **Formatting**: black
