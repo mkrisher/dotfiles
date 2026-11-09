@@ -46,6 +46,7 @@ in
     "starship.toml".source = link "starship.toml";
     "git/ignore".source = link "config/git/ignore";
     "gh/config.yml".source = link "config/gh/config.yml";
+    "ghostty/config".source = link "config/ghostty/config";
   };
 
   # Things that aren't plain symlinks. These run on every switch, so each
