@@ -68,6 +68,7 @@
 
     casks = [
       "agentsview"
+      "ghostty"
       "raycast"
       "st0012/cctop/cctop"
     ];
