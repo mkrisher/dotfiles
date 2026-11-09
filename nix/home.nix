@@ -37,6 +37,7 @@ in
     ".claude/settings.json".source = link "config/claude/settings.json";
     ".claude/statusline.js".source = link "config/claude/statusline.js";
     ".claude/rules".source = link "config/claude/rules";
+    ".claude/skills".source = link "config/claude/skills";
   };
 
   xdg.configFile = {
