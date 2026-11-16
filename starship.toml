@@ -68,7 +68,8 @@ style = "bold green"
 
 [rust]
 format = "[$symbol$version]($style) "
-style = "bold green"
+symbol = "🦀 "
+style = "bold #9b2d20"
 
 [time]
 time_format = "%T"
