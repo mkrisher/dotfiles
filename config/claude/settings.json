@@ -72,6 +72,7 @@
       "Read(~/.config/*)"
     ]
   },
+  "model": "sonnet",
   "hooks": {
     "Notification": [
       {
@@ -106,7 +107,8 @@
     "swift-lsp@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
     "cctop@cctop": true,
-    "warp@claude-code-warp": true
+    "warp@claude-code-warp": true,
+    "superpowers@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "cctop": {
@@ -127,6 +129,5 @@
   "promptSuggestionEnabled": false,
   "tui": "fullscreen",
   "theme": "dark-daltonized",
-  "agentPushNotifEnabled": true,
-  "model": "sonnet"
+  "agentPushNotifEnabled": true
 }
