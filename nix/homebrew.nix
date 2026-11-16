@@ -18,6 +18,7 @@
     };
 
     taps = [
+      "kevengoncalves/tap"
       "st0012/cctop"
     ];
 
@@ -42,6 +43,7 @@
       "imagemagick"
       "jless"
       "jq"
+      "kevengoncalves/tap/lig"
       "lazygit"
       "libpq"
       "llvm"

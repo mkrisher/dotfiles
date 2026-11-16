@@ -72,7 +72,7 @@
       "Read(~/.config/*)"
     ]
   },
-  "model": "sonnet",
+  "model": "opus",
   "hooks": {
     "Notification": [
       {
