@@ -1,3 +1,6 @@
+# >>> lig pre >>>
+eval "$("/opt/homebrew/opt/lig/bin/lig" init zsh pre)"
+# <<< lig pre <<<
 # bash compatible
 export PATH=$HOME/bin:$PATH
 
@@ -79,3 +82,20 @@ function y() {
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
 	command rm -f -- "$tmp"
 }
+# >>> lig post >>>
+eval "$("/opt/homebrew/opt/lig/bin/lig" init zsh post)"
+# <<< lig post <<<
+
+# Rex project layouts (config/rex/projects.lua) start panes with REX_RUN set.
+# Type it into the first prompt, after direnv/devenv has loaded, as if typed.
+if [[ -n "$REX_RUN" ]]; then
+  _rex_run_once() {
+    add-zle-hook-widget -d zle-line-init _rex_run_once
+    local cmd=$REX_RUN
+    unset REX_RUN
+    zle -U "$cmd"$'\n'
+  }
+  autoload -Uz add-zle-hook-widget
+  zle -N _rex_run_once
+  add-zle-hook-widget zle-line-init _rex_run_once
+fi
