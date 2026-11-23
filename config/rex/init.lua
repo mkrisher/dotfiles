@@ -35,3 +35,9 @@ rex.bind("ctrl+5", "pane.send_key", { key = "ctrl+]" })
 rex.bind("ctrl+6", "pane.send_key", { key = "ctrl+shift+6" })
 rex.bind("ctrl+7", "pane.send_key", { key = "ctrl+shift+-" })
 rex.bind("ctrl+8", "pane.send_key", { key = "backspace" })
+
+-- Project layouts (tmuxinator replacement)
+require("projects")
+
+-- lazygit in floating window
+require("lazy_git")
