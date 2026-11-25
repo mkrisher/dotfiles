@@ -201,7 +201,7 @@ From `config/nvim/lazyvim.json`:
 | zoxide | Smart directory navigation |
 | jq, jless | JSON processing |
 | btop, bottom | System monitoring |
-| tldr | Simplified man pages |
+| tlrc | Simplified man pages (`tldr`) |
 
 ### Git Tools
 - gh (GitHub CLI)
@@ -219,6 +219,7 @@ From `config/nvim/lazyvim.json`:
 5. Creates `~/projects`, `~/areas`, `~/resources`, `~/archive`
 6. Creates local config files (`~/.config/.aliases`, `~/.config/.env`)
 7. Clones tmux plugin manager (tpm) to `~/.tmux/plugins/tpm` if missing
+8. Installs Pi with its official installer if `~/.local/bin/pi` is missing (Pi then updates itself with `pi update`), and seeds `~/.pi/agent/pi-voice.json` from `config/pi/` if missing
 
 Still manual: `uv python install --default`, bun (for tmux-palette), and Mise runtimes until projects move to devenv.
 

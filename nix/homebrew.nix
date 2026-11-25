@@ -18,6 +18,7 @@
     };
 
     taps = [
+      "CruelAddict/tap"
       "kevengoncalves/tap"
       "st0012/cctop"
     ];
@@ -56,10 +57,11 @@
         restart_service = "changed";
       }
       "redis"
+      "CruelAddict/tap/resh"
       "ripgrep"
       "ruby-build"
       "starship"
-      "tldr"
+      "tlrc"
       "tmux"
       "tree"
       "uv"
