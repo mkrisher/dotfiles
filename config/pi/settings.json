@@ -1,0 +1,46 @@
+{
+  "lastChangelogVersion": "1.6.0",
+  "theme": "github-dark-colorblind",
+  "terminal": {
+    "showImages": false
+  },
+  "packages": [
+    "npm:@vanillagreen/pi-claude-bridge",
+    "https://github.com/JohnWJ-co/pi-rex-agents",
+    "https://github.com/maxpaulus43/pi-rex-btw",
+    "npm:@earendil-works/pi-voice",
+    "https://github.com/maxpaulus43/pi-rex-shell",
+    "npm:@victor-software-house/pi-curated-themes",
+    "npm:pi-jefferson"
+  ],
+  "enabledModels": [
+    "anthropic/claude-haiku-4-5",
+    "anthropic/claude-haiku-4-5-20251001",
+    "anthropic/claude-haiku-5-5",
+    "anthropic/claude-opus-5",
+    "anthropic/claude-opus-5-5",
+    "anthropic/claude-sonnet-5",
+    "anthropic/claude-sonnet-5-5",
+    "cloudflare-workers-ai/@cf/google/gemma-4-26b-a4b-it",
+    "cloudflare-workers-ai/@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "cloudflare-workers-ai/@cf/meta/llama-4-scout-17b-16e-instruct",
+    "cloudflare-workers-ai/@cf/nvidia/nemotron-3-120b-a12b",
+    "cloudflare-workers-ai/@cf/openai/gpt-oss-120b",
+    "cloudflare-workers-ai/@cf/openai/gpt-oss-20b",
+    "pi-claude/claude-fable-5-1",
+    "pi-claude/claude-opus-5-5",
+    "pi-claude/claude-opus-5",
+    "pi-claude/claude-opus-4-8",
+    "pi-claude/claude-opus-4-7",
+    "pi-claude/claude-opus-4-6",
+    "pi-claude/claude-sonnet-5-5",
+    "pi-claude/claude-sonnet-5",
+    "pi-claude/claude-sonnet-4-6",
+    "pi-claude/claude-haiku-4-5"
+  ],
+  "extensionChangelogVersions": {
+    "{\"source\":\"https://github.com/JohnWJ-co/pi-rex-agents\",\"scope\":\"user\"}": "0.5.7"
+  },
+  "defaultProvider": "pi-claude",
+  "defaultModel": "claude-opus-5-5"
+}

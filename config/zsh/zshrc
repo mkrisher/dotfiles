@@ -86,6 +86,10 @@ function y() {
 eval "$("/opt/homebrew/opt/lig/bin/lig" init zsh post)"
 # <<< lig post <<<
 
+# Rex ships its `rex` CLI inside the app bundle and only exports REX_BIN_DIR.
+# Put it on PATH so tools that spawn plain `rex` (e.g. pi-rex-btw) can find it.
+[[ -n "$REX_BIN_DIR" && -d "$REX_BIN_DIR" ]] && export PATH="$PATH:$REX_BIN_DIR"
+
 # Rex project layouts (config/rex/projects.lua) start panes with REX_RUN set.
 # Type it into the first prompt, after direnv/devenv has loaded, as if typed.
 if [[ -n "$REX_RUN" ]]; then

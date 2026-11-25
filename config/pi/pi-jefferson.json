@@ -1,0 +1,45 @@
+{
+  "rows": [
+    [
+      { "instrument": "path" },
+      { "instrument": "branch" },
+      { "instrument": "model", "align": "right" },
+      { "instrument": "thinking", "align": "right" }
+    ],
+    [
+      { "instrument": "context" },
+      { "instrument": "status" },
+      { "instrument": "tokens", "align": "right" },
+      { "instrument": "cost", "align": "right" }
+    ]
+  ],
+  "rowGap": 0,
+  "instruments": {
+    "path": {
+      "style": { "fg": "accent", "bold": true }
+    },
+    "branch": {
+      "format": "⎇ $branch",
+      "style": { "fg": "mdLink" }
+    },
+    "model": {
+      "format": "$model",
+      "style": { "fg": "accent" }
+    },
+    "thinking": {
+      "format": "· $level",
+      "style": { "fg": "muted" }
+    },
+    "context": {
+      "format": "$bar $percent of $window",
+      "style": { "fg": "success" }
+    },
+    "tokens": {
+      "format": "↑$input ↓$output",
+      "style": { "fg": "muted" }
+    },
+    "cost": {
+      "style": { "fg": "warning" }
+    }
+  }
+}

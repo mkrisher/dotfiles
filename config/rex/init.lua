@@ -41,3 +41,9 @@ require("projects")
 
 -- lazygit in floating window
 require("lazy_git")
+
+-- >>> resh >>>
+dofile("/Users/mkrisher/Library/Application Support/resh/resh.lua")
+rex.exec.start({ "/Users/mkrisher/Library/Application Support/resh/resh", "service", "start" },
+  { detach = true, stdout = false, stderr = false })
+-- <<< resh <<<
